@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "journal_scraper"
+version = "0.1.0"
+description = ""
+authors = ["Kurisu Naotsugu <kurikurikurusu@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+flask = "^3.1.2"
+requests = "^2.32.5"
+google-genai = "^1.50.1"
+google = "^3.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
