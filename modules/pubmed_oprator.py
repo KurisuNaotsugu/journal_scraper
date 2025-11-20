@@ -170,40 +170,120 @@ def fetch_eFetch(pmids: List[str]) -> dict[str, str]:
 
     return abstracts
 
+def fetch_weekly_counts(keywords: list[str], weeks: int = 12):
+    """
+    過去N週間分を1週間単位で区切って PubMed のヒット件数を返す。
+    
+    Args:
+        keywords (list[str]): 検索キーワードのリスト
+        weeks (int): 遡る週数（デフォルト12週間）
+    
+    Returns:
+        dict: { "YYYY/MM/DD": int } 各週の開始日のヒット件数
+    """
+    today = datetime.today()
+    start_date = today - timedelta(weeks=weeks)
+
+    results = {}
+    cursor = start_date
+
+    while cursor < today:
+        week_start = cursor
+        week_end = cursor + timedelta(days=6)
+
+        # 未来を超えないよう調整
+        if week_end > today:
+            week_end = today
+
+        # 文字列へ
+        min_date = week_start.strftime('%Y/%m/%d')
+        max_date = week_end.strftime('%Y/%m/%d')
+
+        # PubMed ESearch API
+        search_url = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi'
+        query = ' AND '.join(keywords)
+
+        search_params = {
+            'db': 'pubmed',
+            'term': query,
+            'mindate': min_date,
+            'maxdate': max_date,
+            'retmode': 'xml',
+            'retmax': 1  # 件数確認だけなので1件で十分
+        }
+
+        response = requests.get(search_url, params=search_params)
+
+        # `<Count>123</Count>` を抽出
+        m = re.search(r'<Count>(\d+)</Count>', response.text)
+        count = int(m.group(1)) if m else 0
+
+        # 週の開始日をキーに保存
+        results[min_date] = count
+
+        # 次の週へ
+        cursor += timedelta(days=7)
+
+    return results
+
 
 # メイン処理 (ユーザー入力のキーワードで直近1週間の論文を取得)
+# メイン処理 (ユーザー入力のキーワードで検索)
 if __name__ == '__main__':
     
     keywords_input = input('検索キーワードをカンマ区切りで入力してください: ')
     keywords = [kw.strip() for kw in keywords_input.split(',')]
 
-    # 日付範囲の計算（デフォルトで直近1週間）
+    # -------------------------
+    # 🔸 過去N週間のヒット数を確認
+    # -------------------------
+    try:
+        weeks = int(input("過去何週間の論文数を表示しますか？（例：12）: "))
+    except ValueError:
+        weeks = 12  # デフォルト値
+        print("数値以外が入力されたため、デフォルト12週間を使用します。")
+
+    weekly_counts = fetch_weekly_counts(keywords, weeks)
+
+    print("\n=== 過去の論文ヒット数（1週間単位） ===")
+    for week_start, count in weekly_counts.items():
+        print(f"{week_start} 〜 : {count} 件")
+
+    print("\n----------------------------------------\n")
+
+    # -------------------------
+    # 🔸 今週 (直近1週間) の論文一覧を取得
+    # -------------------------
     mindate, maxdate = calculate_date_range()
 
     print(f'検索期間: {mindate} ～ {maxdate}')
     print(f'検索キーワード: {keywords}')
 
-    # 論文IDを取得
     pmids = fetch_esearch(keywords, mindate, maxdate)
+
     if not pmids:
         print('該当する論文はありませんでした。')
-    else:
-        print(f'{len(pmids)} 件の論文を取得しました。')
+        exit()
 
-        # 論文情報を取得
-        esumary_xml = fetch_esummary(pmids)
-        esumary_dict = parse_esummary_xml(esumary_xml)
-        # アブストラクトを取得
-        abstracts_dict = fetch_eFetch(pmids)
+    print(f'{len(pmids)} 件の論文を取得しました。')
 
-        # 論文情報を表示
-        for i, paper in enumerate(esumary_dict, start=1):
-            pmid = paper['pmid']
-            abstract = abstracts_dict.get(pmid, "N/A")
+    # 論文情報を取得
+    esummary_xml = fetch_esummary(pmids)
+    esummary_dict = parse_esummary_xml(esummary_xml)
 
-            print(f"\n=== 論文 {i} ===")
-            print(f"PMID: {pmid}")
-            print(f"タイトル: {paper['Title']}")
-            print(f"出版日: {paper['pubdate']}")
-            print(f"URL: {paper['URL']}")
-            print(f"アブストラクト: {abstract}")
+    # アブストラクトを取得
+    abstracts_dict = fetch_eFetch(pmids)
+
+    # -------------------------
+    # 🔸 論文情報を表示
+    # -------------------------
+    for i, paper in enumerate(esummary_dict, start=1):
+        pmid = paper['pmid']
+        abstract = abstracts_dict.get(pmid, "N/A")
+
+        print(f"\n=== 論文 {i} ===")
+        print(f"PMID: {pmid}")
+        print(f"タイトル: {paper['Title']}")
+        print(f"出版日: {paper['pubdate']}")
+        print(f"URL: {paper['URL']}")
+        print(f"アブストラクト: {abstract}")
