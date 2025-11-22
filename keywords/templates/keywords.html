@@ -46,19 +46,19 @@
 
 <div class="container">
 
-    <h2 class="header-title mb-4">PubMed 週別ヒット数トレンド</h2>
+    <h2 class="header-title mb-4">PubMedキーワードトレンドチェッカー</h2>
 
     <div class="card p-4">
         <form method="POST">
 
             <div class="mb-3">
-                <label class="form-label">キーワード（スペース区切り）</label>
-                <input type="text" class="form-control" name="keywords" placeholder="例：cancer immune therapy" required>
+                <label class="form-label">検索キーワード（カンマ区切り）</label>
+                <input type="text" class="form-control" name="keywords" placeholder="例：cancer immune therapy" value="{{ keywords_str }}" required>
             </div>
 
             <div class="mb-3">
-                <label class="form-label">遡る週数</label>
-                <input type="number" class="form-control" name="weeks" min="1" max="52" value="8">
+                <label class="form-label">追跡期間 (週数)</label>
+                <input type="number" class="form-control" name="weeks" min="1" max="52" value="8" value="{{ weeks }}">
             </div>
 
             <button type="submit" class="btn btn-green px-4">検索</button>
@@ -81,7 +81,7 @@
             data: {
                 labels: labels,
                 datasets: [{
-                    label: "PubMed 件数",
+                    label: "検索キーワード：{{ keywords_str }}",
                     data: values,
                     borderWidth: 3,
                     tension: 0.25,

@@ -21,7 +21,7 @@ def create_app():
     # Redirect the top page to /main
     @app.route('/')
     def index():
-        return redirect(url_for('main.main'))
+        return redirect(url_for('main.main_page'))
     
     # Generate Gemini API Client
     client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
