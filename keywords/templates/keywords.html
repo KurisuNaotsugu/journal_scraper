@@ -1,52 +1,24 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8" />
-    <title>PubMed Trend Graph</title>
+    <meta charset="UTF-8">
+    <title>PubMed Trend Checker</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('keywords.static', filename='css/keywords.css') }}">
+
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <style>
-        body {
-            background: #f2f7f2;
-        }
-
-        .card {
-            border-radius: 12px;
-            border: none;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-        }
-
-        .header-title {
-            color: #1b5e20;
-            font-weight: 700;
-        }
-
-        .btn-green {
-            background-color: #2e7d32;
-            color: #fff;
-        }
-        .btn-green:hover {
-            background-color: #256728;
-            color: #fff;
-        }
-
-        .chart-container {
-            position: relative;
-            margin-top: 30px;
-        }
-    </style>
 </head>
 
 <body class="p-4">
 
 <div class="container">
 
-    <h2 class="header-title mb-4">PubMedキーワードトレンドチェッカー</h2>
+    <h2 class="header-title mb-4">【PubMed】キーワードトレンドチェッカー</h2>
 
     <div class="card p-4">
         <form method="POST">
@@ -58,7 +30,7 @@
 
             <div class="mb-3">
                 <label class="form-label">追跡期間 (週数)</label>
-                <input type="number" class="form-control" name="weeks" min="1" max="52" value="8" value="{{ weeks }}">
+                <input type="number" class="form-control" name="weeks" min="1" max="52" value="{{ weeks }}">
             </div>
 
             <button type="submit" class="btn btn-green px-4">検索</button>
@@ -70,41 +42,18 @@
         <canvas id="weeklyChart"></canvas>
     </div>
 
+    <!-- Draw chart -->
+    <script src="{{ url_for('keywords.static', filename='js/keywords.js') }}"></script>
     <script>
-        const labels = {{ labels | tojson }};
-        const values = {{ values | tojson }};
-
-        const ctx = document.getElementById("weeklyChart").getContext("2d");
-
-        new Chart(ctx, {
-            type: "line",
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: "検索キーワード：{{ keywords_str }}",
-                    data: values,
-                    borderWidth: 3,
-                    tension: 0.25,
-                    borderColor: "#2e7d32",
-                    backgroundColor: "rgba(46, 125, 50, 0.15)",
-                    pointRadius: 4,
-                    pointBackgroundColor: "#1b5e20",
-                    pointBorderColor: "#fff"
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
+        drawTrendChart(
+            {{ labels | tojson }},
+            {{ values | tojson }},
+            "{{ keywords_str }}"
+        );
     </script>
     {% endif %}
-</div>
 
+</div>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

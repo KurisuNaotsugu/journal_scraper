@@ -1,0 +1,28 @@
+body {
+    background: #f2f7f2;
+}
+
+.card {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.header-title {
+    color: #1b5e20;
+    font-weight: 700;
+}
+
+.btn-green {
+    background-color: #2e7d32;
+    color: #fff;
+}
+.btn-green:hover {
+    background-color: #256728;
+    color: #fff;
+}
+
+.chart-container {
+    position: relative;
+    margin-top: 30px;
+}
