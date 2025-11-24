@@ -226,8 +226,6 @@ def fetch_weekly_counts(keywords: list[str], weeks: int = 12):
 
     return results
 
-
-# メイン処理 (ユーザー入力のキーワードで直近1週間の論文を取得)
 # メイン処理 (ユーザー入力のキーワードで検索)
 if __name__ == '__main__':
     
