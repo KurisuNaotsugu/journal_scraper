@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, request
 from modules.pubmed_operator import fetch_weekly_counts
-from . import keywords_bp  
+from . import ktracker_bp  
 
-@keywords_bp.route('/keywords', methods=['GET', 'POST'])
+@ktracker_bp.route('/weekly_graph', methods=['GET', 'POST'])
 def weekly_graph():
     labels = []
     values = []

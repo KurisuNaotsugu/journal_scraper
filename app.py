@@ -5,7 +5,7 @@ import google.genai as genai
 
 # Import the Blueprint
 from viewer import view_bp
-from keywords import keywords_bp
+from keyword_tracker import ktracker_bp
 
 
 def create_app():
@@ -29,7 +29,7 @@ def create_app():
     
     # Register Blueprint
     app.register_blueprint(view_bp, url_prefix='/view')
-    app.register_blueprint(keywords_bp, url_prefix='/keywords')
+    app.register_blueprint(ktracker_bp, url_prefix='/ktracker')
     
     return app
 
