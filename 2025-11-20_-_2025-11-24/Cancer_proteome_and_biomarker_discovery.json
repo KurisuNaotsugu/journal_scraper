@@ -1,0 +1,69 @@
+{
+  "title": "Cancer proteome and biomarker discovery",
+  "keywords": [
+    "Cancer",
+    "proteome",
+    "biomarker",
+    "discovery"
+  ],
+  "search_period": "2025-11-20_-_2025-11-24",
+  "paper_count": 4,
+  "papers": [
+    {
+      "pmid": "41276364",
+      "title": "Mass Spectrometry Imaging Applications for Advancement of Interventional Oncology.",
+      "pubdate": "2025 Dec",
+      "url": "https://doi.org/10.1016/j.jvir.2025.09.001",
+      "abstract": "Interventional oncology procedures are commonly performed without a fundamental understanding of intratumoral mechanisms at the cellular and molecular levels. Mass spectrometry imaging (MSI) is a label-free multiomic imaging technique that is used to characterize drugs and their metabolites and/or the proteome, glycome, metabolome, and lipidome of cells. MSI has become a mainstay within the fields of pharmacology, oncology, and systems biology, allowing researchers to investigate mechanistic interactions and expression profiles of several classes of biomolecules concurrently with in situ visualization. Recent advancements in technical aspects of MSI have given it greater versatility to be used in combination with other spatial-omic techniques. When applied to interventional oncology as either a standalone or multimodal technology, MSI can provide unique intercellular and intracellular insight into treatment effectiveness and posttreatment tumor response. In this regard, MSI can aid in the optimization of interventional oncology procedures to improve clinical outcomes.",
+      "summary": {
+        "目的": "インターベンショナル腫瘍学の分野では、腫瘍内の細胞・分子メカニズムの理解が不足しており、本アブストラクトはこの課題に取り組むことを目的としています。質量分析イメージング（MSI）が、この理解を深め、治療効果と治療後の腫瘍反応に関する独自の洞察を提供できることを示しています。最終的に、MSIの適用を通じてインターベンショナル腫瘍学の手順を最適化し、臨床的転帰を改善することを目指しています。",
+        "サンプル": "記載なし",
+        "解析手法": "主な解析手法は質量分析イメージング（MSI）です。これはラベルフリーのマルチオミクスイメージング技術であり、薬物とその代謝物、および細胞のプロテオーム、グリコーム、メタボローム、リピドームを特性評価するために使用されます。また、技術の進歩により、他の空間オミクス技術と組み合わせて使用​​する汎用性も高まっています。",
+        "結果": "記載なし",
+        "結論": "質量分析イメージング（MSI）は、インターベンショナル腫瘍学の分野において、治療効果と治療後の腫瘍反応に関する独自の細胞間および細胞内レベルの洞察を提供する強力なツールです。この技術の適用は、インターベンショナル腫瘍学の手順の最適化に貢献し、最終的には患者の臨床的転帰を改善する可能性を秘めています。"
+      }
+    },
+    {
+      "pmid": "41276347",
+      "title": "Enhanced cell surface enrichment and data-independent acquisition for in-depth profiling of multiple myeloma cell lines.",
+      "pubdate": "2026",
+      "url": "https://doi.org/10.1016/bs.mcb.2025.10.005",
+      "abstract": "Multiple myeloma is a hematologic malignancy characterized by clonal plasma cell proliferation, with recent therapeutic advances focusing on immunotherapies targeting cell surface antigens. While several surface markers are well-characterized, there remains a critical need to identify additional specific targets for relapsed cases. Comprehensive surface proteome analysis is challenging due to the low abundance of surface proteins and limited cell numbers available from patient samples.",
+      "summary": {
+        "目的": "多発性骨髄腫、特に再発症例において、既存の治療法を補完する追加の特異的治療標的を特定することが重要な目的です。免疫療法標的としての細胞表面抗原に焦点を当て、新たな標的の同定が求められています。",
+        "サンプル": "記載なし",
+        "解析手法": "記載なし",
+        "結果": "記載なし",
+        "結論": "記載なし"
+      }
+    },
+    {
+      "pmid": "41269529",
+      "title": "Multi-omics strategies for biomarker discovery and application in personalized oncology.",
+      "pubdate": "2025 Nov 21",
+      "url": "https://doi.org/10.1186/s43556-025-00340-0",
+      "abstract": "Multi-omics strategies, integrating genomics, transcriptomics, proteomics, and metabolomics, have revolutionized biomarker discovery and enabled novel applications in personalized oncology. Despite rapid technological developments, a comprehensive synthesis addressing integration strategies, analytical workflows, and translational applications has been lacking. This review presents a comprehensive framework of multi-omics integration, encompassing workflows, analytical techniques, and computational tools for both horizontal and vertical integration strategies, with particular emphasis on machine learning and deep learning approaches for data interpretation. Recent applications of multi-omics have yielded promising biomarker panels at the single-molecule, multi-molecule, and cross-omics levels, supporting cancer diagnosis, prognosis, and therapeutic decision-making. However, major challenges persist, particularly in data heterogeneity, reproducibility, and the clinical validation of biomarkers across diverse patient populations. This review also highlights cutting-edge advances in single-cell multi-omics and spatial multi-omics technologies, which are expanding the scope of biomarker discovery and deepening our understanding of tumor heterogeneity. Finally, we discuss the integral role of multi-omics in personalized oncology, with a particular focus on predicting drug responses and optimizing individualized treatment strategies, supported by real-world clinical practice cases. By bridging technological innovations with translational applications, this review aims to provide a valuable resource for researchers and clinicians, offering insights into both current methodologies and future directions for implementing multi-omics data in biomarker discovery and personalized cancer care.",
+      "summary": {
+        "目的": "本レビューは、マルチオミクス統合の包括的なフレームワークを提示し、特に機械学習と深層学習を用いたデータ解釈に重点を置いています。また、シングルセルおよび空間マルチオミクスといった最先端技術と、個別化腫瘍学におけるマルチオミクスの不可欠な役割を強調しています。最終的に、研究者と臨床医に、マルチオミクスデータの現在の方法論と将来の方向性に関する洞察を提供することを目指しています。",
+        "サンプル": "記載なし",
+        "解析手法": "記載なし",
+        "結果": "マルチオミクス応用により、がんの診断、予後、治療決定を支援する有望なバイオマーカーパネルが、単一分子、複数分子、およびオミクス横断レベルで得られています。しかし、データ異質性、再現性、多様な患者集団におけるバイオマーカーの臨床的妥当性確認において大きな課題が依然として存在します。シングルセルおよび空間マルチオミクス技術の進展は、バイオマーカー発見の範囲を広げ、腫瘍の不均一性に関する理解を深めています。",
+        "結論": "本レビューは、技術革新とトランスレーショナル応用を結びつけることで、研究者と臨床医に貴重なリソースを提供することを目指しています。これにより、バイオマーカー発見と個別化がん治療におけるマルチオミクスデータの現在の方法論と将来の方向性に関する洞察を提供します。マルチオミクスは、薬物応答予測や個別化治療戦略の最適化を通じて、個別化腫瘍学において不可欠な役割を果たすと結論付けています。"
+      }
+    },
+    {
+      "pmid": "41267331",
+      "title": "Ultrahigh-Power Sonicator Lysis Enables Deep Proteomic Profiling of Hair Shafts for Fetal Growth Restriction Biomarker Discovery.",
+      "pubdate": "2025 Nov 20",
+      "url": "https://doi.org/10.1021/acs.analchem.5c05856",
+      "abstract": "The hair shaft provides a noninvasive, easily accessible specimen with exceptional molecular stability, retaining metabolic signatures from fetal development. However, its dense keratinization impedes efficient protein extraction, thereby restricting the proteomic depth and clinical applicability. To surmount this barrier, we designed an ultrahigh-power sonicator (UHPS) that disrupts keratin networks, boosting the protein yield by more than 1.8-fold. We coupled UHPS with the Deep Efficient Peptide Sequencing and Quantification (DEEP SEQ) mass spectrometry platform for the in-depth proteomic profiling of hair shafts. This integrated workflow quantified 3,925 proteins from just 1 mg of hair shaft sample. In fetal growth restriction (FGR) cases versus healthy controls (HCs), we identified 239 differentially expressed proteins (DEPs). Candidate biomarkers from this panel were validated using parallel reaction monitoring (PRM) and an enzyme-linked immunosorbent assay (ELISA) in independent cohorts. Their expression levels showed strong correlations with FGR clinical indicators. The UHPS-DEEP SEQ pipeline marks a significant advancement in hair shaft proteomics, enabling noninvasive biomarker identification and offering significant potential for perinatal diagnostics.",
+      "summary": {
+        "目的": "本研究の目的は、毛髪の高いケラチン化がタンパク質抽出を妨げ、プロテオミクス解析の深度と臨床応用を制限するという課題を克服することです。これを解決するため、ケラチンネットワークを破壊しタンパク質収率を向上させる超高出力ソニケーター（UHPS）を開発し、これをDeep Efficient Peptide Sequencing and Quantification（DEEP SEQ）質量分析プラットフォームと組み合わせ、毛髪のプロテオミクス解析を深化させる新しいワークフローを構築しました。",
+        "サンプル": "本研究では、非侵襲的で入手しやすい検体である毛髪（hair shaft）が主要なサンプルとして用いられました。特に、胎児発育制限（FGR）の症例と健康な対照（HC）の毛髪が比較対象として使用され、独立したコホートが候補バイオマーカーの検証に用いられました。",
+        "解析手法": "まず、超高出力ソニケーター（UHPS）を設計し、毛髪のケラチンネットワークを破壊してタンパク質収率を1.8倍以上向上させました。このUHPSをDeep Efficient Peptide Sequencing and Quantification（DEEP SEQ）質量分析プラットフォームと組み合わせることで、毛髪の詳細なプロテオミクスプロファイリングを行いました。同定された候補バイオマーカーの検証には、独立したコホートを用いてパラレル反応モニタリング（PRM）と酵素結合免疫吸着測定法（ELISA）が適用されました。",
+        "結果": "開発された統合ワークフローにより、わずか1 mgの毛髪サンプルから3,925種類のタンパク質が定量されました。胎児発育制限（FGR）症例と健康対照群の比較において、239種類の発現差タンパク質（DEPs）が同定されました。これらの候補バイオマーカーの発現レベルは、FGRの臨床指標と強い相関を示しました。",
+        "結論": "UHPS-DEEP SEQパイプラインは毛髪プロテオミクスにおいて重要な進歩をもたらし、非侵襲的なバイオマーカー同定を可能にしました。本技術は、周産期診断に大きな可能性を提供し、その応用が期待されます。"
+      }
+    }
+  ]
+}

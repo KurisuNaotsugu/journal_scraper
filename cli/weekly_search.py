@@ -5,6 +5,7 @@ import sys
 from pathlib import Path
 import os
 import json
+from datetime import date
 import argparse
 from typing import List
 
@@ -15,15 +16,11 @@ sys.path.append(str(ROOT))
 import modules.gemini_operator as go
 import modules.pubmed_operator as po
 
-
 def search_papers(keywords: List[str], mindate: str = None, maxdate: str = None) -> tuple[dict, dict]:
     """
     PubMedから論文情報とアブストラクトを取得
     """
-    print(f"\n=== キーワード: {keywords} ===")
-
     mindate, maxdate = po.calculate_date_range(mindate, maxdate)
-    print(f"検索期間: {mindate} ～ {maxdate}")
 
     pmids = po.fetch_esearch(keywords, mindate, maxdate)
     if not pmids:
@@ -60,8 +57,28 @@ def summarize_abstracts(abstracts_dict: dict) -> dict[str, str]:
 
     return summaries
 
+# ユーティリティ関数: config.json の読み書き
+def load_config():
+    config_path = ROOT / "cli" / "config.json"
+    if not config_path.exists():
+        raise FileNotFoundError(f"config.json が見つかりません: {config_path}")
+
+    with open(config_path, "r") as f:
+        return json.load(f)
+
+
+def save_config(new_date: str):
+    config_path = ROOT / "cli" / "config.json"
+    with open(config_path, "w") as f:
+        json.dump({"last_search_date": new_date}, f, indent=2, ensure_ascii=False)
+
 
 def main():
+    """メイン関数
+    Args:
+        --input: 入力キーワードファイル（JSON形式）
+    
+    """
     parser = argparse.ArgumentParser(description="PubMed search and summarize tool")
     parser.add_argument("--input", type=str, default="keywords.json", help="入力キーワードファイル（JSON）")
     args = parser.parse_args()
@@ -71,6 +88,13 @@ def main():
     if not input_path.exists():
         print(f"[ERROR] 入力ファイルが存在しません: {input_path}")
         return
+    
+    # 検索期間設定
+    config = load_config()
+    mindate = config["last_search_date"]
+    maxdate = date.today().strftime("%Y/%m/%d")
+
+    print(f"\n>>> 検索期間: {mindate} ～ {maxdate}")
 
     # キーワードJSON 読み込み 
     with open(input_path, "r") as f:
@@ -91,7 +115,7 @@ def main():
         print(f"キーワード: {keywords}")
 
         # 論文検索
-        esummary_list, abstracts_dict, mindate, maxdate = search_papers(keywords)
+        esummary_list, abstracts_dict, mindate, maxdate = search_papers(keywords, mindate, maxdate)
         if not esummary_list:
             continue
 
@@ -136,6 +160,10 @@ def main():
             json.dump(output_data, f, indent=2, ensure_ascii=False)
 
         print(f"\nDONE! → {output_path}")
+    
+    # 検索終了後、config.json の last_search_date を更新
+    save_config(new_date=maxdate) 
+    print(f"\nUpdated last_search_date to {maxdate} in config.json")
 
 
 if __name__ == "__main__":
