@@ -4,7 +4,7 @@ from flask import Flask, redirect, url_for
 import google.genai as genai
 
 # Import the Blueprint
-from main import main_bp
+from viewer import view_bp
 from keywords import keywords_bp
 
 
@@ -21,14 +21,14 @@ def create_app():
     # Redirect the top page to /main
     @app.route('/')
     def index():
-        return redirect(url_for('main.main_page'))
+        return redirect(url_for('view.view_page'))
     
     # Generate Gemini API Client
     client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
     app.config['GENAI_CLIENT'] = client
     
     # Register Blueprint
-    app.register_blueprint(main_bp, url_prefix='/main')
+    app.register_blueprint(view_bp, url_prefix='/view')
     app.register_blueprint(keywords_bp, url_prefix='/keywords')
     
     return app
