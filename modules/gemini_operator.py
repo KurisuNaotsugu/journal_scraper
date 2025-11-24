@@ -1,16 +1,24 @@
 # gemini_operator.py
 import os
+import json
+import re
 import google.genai as genai
 
 PROMPT_TEMPLATE = """
-次のアブストラクトから以下の5つを抽出してください：
-- 背景
-- 目的
-- 方法
-- 結果
-- 結論
+次のアブストラクトから以下の5項目を抽出し、各項目に 2-3 文で要約してください。
 
-アブストラクト内に記載がない場合は「記載なし」としてください。
+出力は必ず **純粋な JSON（コードブロック不可・前後の説明文禁止）** とします。
+
+出力形式:
+{{
+  "目的": "",
+  "サンプル": "",
+  "解析手法": "",
+  "結果": "",
+  "結論": ""
+}}
+
+アブストラクト内に記載がない項目は "記載なし" としてください。
 
 【アブストラクト】
 {abstract}
@@ -29,24 +37,40 @@ def build_prompt(template: str, **kwargs) -> str:
     return template.format(**kwargs)
 
 
-def summarize_text(gemini_client, prompt, model: str="gemini-2.5-flash"):
-    """任意のテキストを箇条書きで要約
+def request_gemini_json(gemini_client, prompt: str, model: str="gemini-2.5-flash"):
+    """Geminiにプロンプトを送り、レスポンスからJSONを抽出して返す。
+
     Args:
         gemini_client: Geminiクライアントインスタンス
-        prompt (str): 要約したいテキスト
-        model (str, optional): 使用するGeminiモデル. Defaults to "gemini-2.5-flash".
+        prompt (str): APIへ送るプロンプト
+        model (str, optional): 使用するモデル (Defaults to "gemini-2.5-flash")
+
     Returns:
-        str: 要約結果のテキスト
+        dict: Geminiレスポンスから抽出したJSON。抽出できない場合は:
+              {
+                "error": True,
+                "raw_response": "元のレスポンス文字列"
+              }
     """
     try:
         response = gemini_client.models.generate_content(model=model, contents=prompt)
-        return response.text if hasattr(response, "text") else str(response)
+        raw = response.text if hasattr(response, "text") else str(response)
     except Exception as e:
-        return f"要約生成に失敗: {str(e)}"
+        return {"error": True, "message": f"Gemini API error: {str(e)}"}
+
+    parsed = extract_json_from_gemini(raw)
+
+    if parsed is None:
+        return {
+            "error": True,
+            "raw_response": raw
+        }
+
+    return parsed
 
 
 def summarize_dict(gemini_client, data_dict):
-    """辞書形式のデータを要約する関数
+    """辞書形式のデータを順に要約して同一キーの辞書形式で返す
     Args:
         gemini_client: Geminiクライアントインスタンス
         data_dict (dict): {key: text}形式の辞書データ
@@ -56,9 +80,46 @@ def summarize_dict(gemini_client, data_dict):
     summaries = {}
 
     for key, text in data_dict.items():
-        summaries[key] = summarize_text(gemini_client, text)
+        summaries[key] = request_gemini_json(gemini_client, text)
 
     return summaries
+
+def extract_json_from_gemini(text: str):
+    """Geminiの出力からJSONを安全に抽出してdictで返す。
+    Geminiの出力は必ずしも純粋なJSONではないため、複数のパターンに対応するためのフォーマット検出
+
+    Args:
+        text (str): Geminiの出力テキスト
+    Returns:
+        dict or None: 抽出したJSONデータ、または None
+    """
+
+    if not text:
+        return None
+
+    # 1) ```json ... ``` のようなコードブロックがある場合
+    codeblock_match = re.search(r"```json(.*?)```", text, re.DOTALL)
+    if codeblock_match:
+        try:
+            return json.loads(codeblock_match.group(1).strip())
+        except:
+            pass
+
+    # 2) 通常の { ... } の JSON を正規表現で抽出
+    json_match = re.search(r"\{[\s\S]*\}", text)
+    if json_match:
+        try:
+            return json.loads(json_match.group(0))
+        except:
+            pass
+
+    # 3) fallback：最初の { から最後の } までを抽出
+    try:
+        start = text.index("{")
+        end = text.rindex("}") + 1
+        return json.loads(text[start:end])
+    except:
+        return None
 
 
 
@@ -93,7 +154,7 @@ def main():
         )
 
         # Gemini で処理
-        summary = summarize_text(gemini_client, prompt)
+        summary = request_gemini_json(gemini_client, prompt)
         summaries[key] = summary
 
     # 結果出力
