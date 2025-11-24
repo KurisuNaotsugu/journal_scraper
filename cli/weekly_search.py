@@ -1,6 +1,5 @@
 # cli/weekly_search.py
-# Usage example: python cli/weekly_search.py --input cli/keywords.json --output filename.json
-
+# Usage example: python cli/weekly_search.py --input cli/keywords.json
 
 import sys
 from pathlib import Path
@@ -65,25 +64,21 @@ def summarize_abstracts(abstracts_dict: dict) -> dict[str, str]:
 def main():
     parser = argparse.ArgumentParser(description="PubMed search and summarize tool")
     parser.add_argument("--input", type=str, default="keywords.json", help="入力キーワードファイル（JSON）")
-    parser.add_argument("--output", type=str, default="result.json", help="出力ファイル名（JSON）")
     args = parser.parse_args()
-
     input_path = Path(args.input)
-    output_path = Path(args.output)
 
+    # 入力ファイル存在チェック
     if not input_path.exists():
         print(f"[ERROR] 入力ファイルが存在しません: {input_path}")
         return
 
-    # ---- JSON 読み込み ----
+    # キーワードJSON 読み込み 
     with open(input_path, "r") as f:
         metas = json.load(f)
 
     if not isinstance(metas, list):
         print("[ERROR] JSONは配列形式で複数検索を指定してください。")
         return
-
-    all_results = []
 
     for meta in metas:
         search_title = meta.get("search_title", "Untitled search")
@@ -95,13 +90,18 @@ def main():
         print(f"\n=== {search_title} ===")
         print(f"キーワード: {keywords}")
 
+        # 論文検索
         esummary_list, abstracts_dict, mindate, maxdate = search_papers(keywords)
         if not esummary_list:
             continue
 
-        search_period = f"{mindate} - {maxdate}"
+        # 検索期間文字列
+        search_period = str(f"{mindate} - {maxdate}").replace("/", "-").replace(" ", "_")
+
+        # 要約生成
         summaries = summarize_abstracts(abstracts_dict)
 
+        # 出力データ構築
         output_data = {
             "title": search_title,
             "keywords": keywords,
@@ -109,7 +109,7 @@ def main():
             "paper_count": len(esummary_list),
             "papers": []
         }
-
+        # 論文情報の登録
         for esummary in esummary_list:
             pmid = esummary["pmid"]
             output_data["papers"].append({
@@ -120,14 +120,22 @@ def main():
                 "abstract": abstracts_dict.get(pmid),
                 "summary": summaries.get(pmid)
             })
+        # 出力ディレクトリ作成
+        output_dir = Path(search_period)
+        output_dir.mkdir(parents=True, exist_ok=True)
 
-        all_results.append(output_data)
+        # 出力ファイル名生成
+        search_title_for_save = search_title.replace(" ", "_").replace("/", "-")
+        filename = f"{search_title_for_save}.json"
 
-    # ---- JSON 保存 ----
-    with open(output_path, "w") as f:
-        json.dump(all_results, f, indent=2, ensure_ascii=False)
+        # 出力パス生成
+        output_path = output_dir / filename
 
-    print(f"\nDONE! → {output_path}")
+        # ---- JSON 保存 ----
+        with open(output_path, "w") as f:
+            json.dump(output_data, f, indent=2, ensure_ascii=False)
+
+        print(f"\nDONE! → {output_path}")
 
 
 if __name__ == "__main__":
