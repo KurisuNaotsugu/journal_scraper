@@ -1,4 +1,7 @@
 # cli/weekly_search.py
+# Usage example: python cli/weekly_search.py --input cli/keywords.json --output filename.json
+
+
 import sys
 from pathlib import Path
 import os
@@ -37,7 +40,7 @@ def search_papers(keywords: List[str], mindate: str = None, maxdate: str = None)
     # アブストラクトを取得
     abstracts_dict = po.fetch_eFetch(pmids)
 
-    return esummary_list, abstracts_dict
+    return esummary_list, abstracts_dict, mindate, maxdate
 
 
 def summarize_abstracts(abstracts_dict: dict) -> dict[str, str]:
@@ -53,7 +56,7 @@ def summarize_abstracts(abstracts_dict: dict) -> dict[str, str]:
             continue
 
         prompt = go.build_prompt(go.PROMPT_TEMPLATE, abstract=abstract)
-        summary = go.summarize_text(gemini_client, prompt)
+        summary = go.request_gemini_json(gemini_client, prompt)
         summaries[pmid] = summary
 
     return summaries
@@ -92,15 +95,17 @@ def main():
         print(f"\n=== {search_title} ===")
         print(f"キーワード: {keywords}")
 
-        esummary_list, abstracts_dict = search_papers(keywords)
+        esummary_list, abstracts_dict, mindate, maxdate = search_papers(keywords)
         if not esummary_list:
             continue
 
+        search_period = f"{mindate} - {maxdate}"
         summaries = summarize_abstracts(abstracts_dict)
 
         output_data = {
             "title": search_title,
             "keywords": keywords,
+            "search_period": search_period,
             "paper_count": len(esummary_list),
             "papers": []
         }
