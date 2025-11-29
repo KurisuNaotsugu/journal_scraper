@@ -5,8 +5,8 @@ import google.genai as genai
 
 # Import the Blueprint
 from viewer import view_bp
+from manual_search import manualsearch_bp
 from keyword_tracker import ktracker_bp
-
 
 def create_app():
     '''Flask アプリケーションを作成し
@@ -14,12 +14,13 @@ def create_app():
     Returns:
         Flask: Flask アプリケーションインスタンス
     '''
-    # Generate Gemini API Client
-    client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
-    app.config['GENAI_CLIENT'] = client
 
     # Flassk アプリケーションの作成
     app = Flask(__name__)
+
+    # Generate Gemini API Client
+    client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+    app.config['GENAI_CLIENT'] = client
 
     # トップページをビューにリダイレクト
     @app.route('/')
@@ -28,6 +29,7 @@ def create_app():
     
     # Blueprint登録
     app.register_blueprint(view_bp, url_prefix='/view')
+    app.register_blueprint(manualsearch_bp, url_prefix='/manualsearch')
     app.register_blueprint(ktracker_bp, url_prefix='/ktracker')
     
     return app
