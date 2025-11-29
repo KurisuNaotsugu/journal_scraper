@@ -24,6 +24,7 @@ def run():
         }]
 
         results = manual_search(input_json, mindate, maxdate)
+        #print(results)
         return jsonify({"status": "success", "results": results})
 
     except Exception as e:

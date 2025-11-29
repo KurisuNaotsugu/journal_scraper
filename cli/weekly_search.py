@@ -19,21 +19,23 @@ def search_papers(keywords: List[str], mindate: str = None, maxdate: str = None)
     """
     PubMedから論文情報とアブストラクトを取得
     """
+    print("(search_parpers) 論文開始...")
     mindate, maxdate = po.calculate_date_range(mindate, maxdate)
 
     pmids = po.fetch_esearch(keywords, mindate, maxdate)
     if not pmids:
-        print("該当する論文はありませんでした。")
+        print("(search_parpers) 該当する論文はありませんでした。")
         return {}, {}
-
-    print(f"{len(pmids)} 件の論文を取得しました。")
+    print(f"(search_parpers) {len(pmids)} 件の論文がヒットしました。データ収集を開始します。")
 
     # 論文情報を取得
     esummary_xml = po.fetch_esummary(pmids)
     esummary_list = po.parse_esummary_xml(esummary_xml)
+    print(f"(search_parpers) {len(pmids)} 件の論文を取得しました。")
 
     # アブストラクトを取得
     abstracts_dict = po.fetch_eFetch(pmids)
+    print(f"(search_parpers) アブストラクトを取得しました。")
 
     return esummary_list, abstracts_dict, mindate, maxdate
 
@@ -42,6 +44,7 @@ def summarize_abstracts(abstracts_dict: dict) -> dict[str, str]:
     """
     Gemini を使ってアブストラクトを要約
     """
+    print(f"(summarize_abstracts) Geminiによる要約を開始します...")
     gemini_client = go.genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
     summaries = {}
@@ -53,6 +56,7 @@ def summarize_abstracts(abstracts_dict: dict) -> dict[str, str]:
         prompt = go.build_prompt(go.PROMPT_TEMPLATE, abstract=abstract)
         summary = go.request_gemini_json(gemini_client, prompt)
         summaries[pmid] = summary
+    print(f"(summarize_abstracts) 要約が完了しました。")
 
     return summaries
 
@@ -82,6 +86,7 @@ def manual_search(input_json: list, mindate: str, maxdate: str):
     Returns:
         results (list): 各検索結果のリスト
     """
+    print(f"(manual_search) 文献調査を開始します: 検索期間: {mindate} ～ {maxdate}")
     results = []
     for meta in input_json:
         search_title = meta.get("search_title", "Untitled search")
@@ -100,6 +105,7 @@ def manual_search(input_json: list, mindate: str, maxdate: str):
         summaries = summarize_abstracts(abstracts_dict)
 
         # 出力データ構築
+        print(f"(manual_search) 出力データを構築します...")
         search_period = f"{mindate}-{maxdate}".replace("/", "-")
         output_data = {
             "title": search_title,
@@ -119,6 +125,8 @@ def manual_search(input_json: list, mindate: str, maxdate: str):
                 "summary": summaries.get(pmid)
             })
         results.append(output_data)
+
+        print(f"(manual_search) '{search_title}' の処理が完了しました。")
     return results
 
 def main():
