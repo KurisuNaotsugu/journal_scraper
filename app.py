@@ -4,7 +4,7 @@ from flask import Flask, redirect, url_for
 import google.genai as genai
 
 # Import the Blueprint
-from viewer import view_bp
+from viewer import viewer_bp
 from manual_search import manualsearch_bp
 from keyword_tracker import ktracker_bp
 
@@ -25,10 +25,10 @@ def create_app():
     # トップページをビューにリダイレクト
     @app.route('/')
     def index():
-        return redirect(url_for('view.view_page'))
+        return redirect(url_for('viewer.view_page'))
     
     # Blueprint登録
-    app.register_blueprint(view_bp, url_prefix='/view')
+    app.register_blueprint(viewer_bp, url_prefix='/viewer')
     app.register_blueprint(manualsearch_bp, url_prefix='/manualsearch')
     app.register_blueprint(ktracker_bp, url_prefix='/ktracker')
     

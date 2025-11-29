@@ -166,6 +166,7 @@ def main():
         return
 
     #--- 各キーワードセットで検索と要約を実行 ----------------------------------------------------------------
+    results = []
     for meta in metas:
         search_title = meta.get("search_title", "Untitled search") 
         keywords = meta.get("keywords", [])
@@ -206,20 +207,19 @@ def main():
                 "abstract": abstracts_dict.get(pmid),
                 "summary": summaries.get(pmid)
             })
-        # 出力ディレクトリ作成
-        output_dir = os.path.join('search_result', search_period)
-        output_dir.mkdir(parents=True, exist_ok=True)
+        results.append(output_data)
+        
+    # 出力ディレクトリ作成
+    output_dir = Path("search_result")
+    output_dir.mkdir(parents=True, exist_ok=True)
+    filename = f"{search_period}.json"
+    output_path = output_dir / filename
 
-        # 出力パス生成
-        search_title_for_save = search_title.replace(" ", "_").replace("/", "-")
-        filename = f"{search_title_for_save}.json"
-        output_path = output_dir / filename
+    # ---- JSON 保存 ----
+    with open(output_path, "w") as f:
+        json.dump(results, f, indent=2, ensure_ascii=False)
+    print(f"Result saved!")
 
-        # ---- JSON 保存 ----
-        with open(output_path, "w") as f:
-            json.dump(output_data, f, indent=2, ensure_ascii=False)
-        print(f"Result of '{search_title}' saved!")
-    
     # 検索終了後、config.json の last_search_date を更新
     save_config(new_date=maxdate) 
     print(f"\nUpdated last_search_date to {maxdate} in config.json")

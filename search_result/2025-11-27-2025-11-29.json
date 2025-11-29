@@ -1,0 +1,182 @@
+[
+  {
+    "title": "Kidney Cancer immune therapy papers",
+    "keywords": [
+      "kidney",
+      "cancer",
+      "immune",
+      "therapy"
+    ],
+    "search_period": "2025-11-27-2025-11-29",
+    "paper_count": 8,
+    "papers": [
+      {
+        "pmid": "41315742",
+        "title": "Natural killer cells in kidney immune surveillance, injury and fibrosis.",
+        "pubdate": "2025 Nov 28",
+        "url": "https://doi.org/10.1038/s41581-025-01029-x",
+        "abstract": "Natural killer (NK) cells are cytotoxic lymphocytes of the innate immune system with essential roles in immune surveillance, tissue homeostasis and inflammation. In the kidney, NK cells comprise a heterogeneous population that includes both circulating and tissue-resident subsets, each shaped by environmental cues and genetic factors through interactions with major histocompatibility complex class I molecules. The latest research data highlight multifaceted NK cell contributions to kidney physiology and pathology. In steady state, NK cells support kidney immune surveillance and crosstalk with epithelial, myeloid and lymphoid cells. In disease, NK cells can promote injury through direct cytotoxicity and pro-inflammatory cytokine release. Experimental models demonstrate pathogenic roles for NK cells in ischaemia-reperfusion injury and chronic kidney disease, with emerging evidence implicating NK cell-derived mediators in fibrogenesis. In kidney transplantation, NK cells are effectors of antibody-dependent and antibody-independent allograft injury. Educated NK cells expressing CD16a (also known as FcγRIIIa) mediate antibody-dependent cellular cytotoxicity, whereas loss of inhibitory receptor-ligand interactions (for example, due to killer immunoglobulin-like receptor-HLA mismatch) can trigger NK cell activation independently of donor-specific antibodies. Advances in high-resolution profiling have deepened mechanistic insights and uncovered novel therapeutic targets. Here, we provide a comprehensive overview of NK cell biology in the kidney, highlighting roles in health, disease and transplantation, and we consider its translational implications for diagnosis and therapy.",
+        "summary": {
+          "目的": "本レビューは、腎臓におけるナチュラルキラー（NK）細胞生物学の包括的な概要を提供することを目的としています。具体的には、健康、疾患、および移植におけるNK細胞の役割を強調し、その診断および治療への応用の可能性を考察します。",
+          "サンプル": "記載なし",
+          "解析手法": "記載なし",
+          "結果": "腎臓のNK細胞は不均一な集団であり、定常状態では免疫監視や他の細胞とのクロストークに貢献します。しかし、疾患時には直接的な細胞毒性や炎症誘発性サイトカイン放出を通じて腎臓損傷を促進する可能性があります。実験モデルでは、虚血再灌流傷害、慢性腎臓病、腎臓移植における同種移植片傷害においてNK細胞の病原的役割が示されており、NK細胞由来のメディエーターが線維形成に関与する可能性も示唆されています。",
+          "結論": "高解像度プロファイリングの進歩により、NK細胞のメカニズムに関する理解が深まり、新たな治療標的が発見されています。これらの知見は、腎臓関連疾患の診断と治療戦略の開発において重要な応用的意義を持つと考えられます。"
+        }
+      },
+      {
+        "pmid": "41314483",
+        "title": "Comparison of the therapeutic potential of exosomes derived from different cells for the treatment of prostate cancer.",
+        "pubdate": "2025 Nov 26",
+        "url": "https://doi.org/10.1016/j.critrevonc.2025.105055",
+        "abstract": "Prostate cancer (PCa) is a primary cause of male cancer death, underlining the crucial need for new therapies. Natural nanovesicles known as exosomes (EXOs) have shown great promise as therapeutic vectors due to their excellent biocompatibility, minimal immunogenicity, and inherent capacity to carry bioactive cargo. Different cell types may produce these vesicles, and each one imparts unique biological characteristics and therapeutic processes. This review compares the therapeutic potential of EXOs obtained from three primary sources for the treatment of PCa. The usefulness of mesenchymal stem cell-derived EXOs (MSC-EXOs), which leverage their inherent tumor tropism to serve as naturally occurring delivery vehicles for therapeutic agents, is critically examined. We investigate the potential of immune cell-derived EXOs (IC-EXOs) as cytotoxic agents or cell-free vaccines that effectively activate anti-tumor immunity. We also discuss the paradoxical role of tumor-derived EXOs (TEXs), which can serve as vaccine antigens or as tools for liquid biopsy, despite their role in cancer development. We highlight the unique benefits, drawbacks, and best therapeutic settings of these platforms by combining evidence from multiple platforms. Lastly, we address crucial clinical translation issues, such as manufacturing and standardization, and offer a framework for selecting the best EXO source in the evolving field of PCa treatment based on specific therapeutic goals.",
+        "summary": {
+          "目的": "本レビューは、前立腺がん（PCa）治療における3つの主要な由来のエキソソーム（MSC-EXOs、IC-EXOs、TEXs）の治療可能性を比較検討することを目的としています。これらのエキソソームプラットフォームのユニークな利点、欠点、および最適な治療設定を強調することで、包括的な視点を提供します。最終的には、PCa治療の進化する分野において、特定の治療目標に基づいた最適なエキソソーム源を選択するための枠組みを提示します。",
+          "サンプル": "記載なし",
+          "解析手法": "本レビューは、複数の既存の研究プラットフォームからのエビデンスを統合することにより、各エキソソーム源の治療可能性を比較検討しています。特に、MSC-EXOsの送達ビークルとしての有用性、IC-EXOsの抗腫瘍免疫活性化剤としての可能性、そしてTEXsの液状生検ツールやワクチン抗原としての二面的な役割について詳細に考察しています。これらの比較分析に基づき、各エキソソーム源の利点、欠点、および最適な治療設定を明確にしています。",
+          "結果": "本レビューの結果、MSC-EXOsはその腫瘍指向性を活かし治療薬の送達ビークルとして有望であることが示唆されました。IC-EXOsは細胞傷害性因子または細胞フリーワクチンとして抗腫瘍免疫を効果的に活性化する可能性が特定されました。また、TEXsはがんの発生に関与するにもかかわらず、ワクチン抗原や液状生検ツールとしての矛盾した役割が議論されました。",
+          "結論": "本レビューは、前立腺がん治療における最適なエキソソーム源を選択するための枠組みを、特定の治療目標に基づいて提供します。また、製造や標準化といった臨床応用における重要な課題に対処し、これらの課題を克服することがエキソソームベースの治療法を前進させる上で不可欠であることを強調しています。"
+        }
+      },
+      {
+        "pmid": "41312016",
+        "title": "Multivalent aptamer engineered and functionalized NK cells for enhanced adoptive immunotherapy in CD30-positive malignant lymphoma.",
+        "pubdate": "2025 Dec 9",
+        "url": "https://doi.org/10.1016/j.omtn.2025.102748",
+        "abstract": "Adoptive cell therapy is a notable achievement in the treatment of various hematological malignancies. Among these cell-based therapies, chimeric antigen receptor natural killer (CAR-NK) cells have received increasing attention because, unlike CAR-T cells, they are not associated with the risk of cytokine release syndrome, immune-effector-cell-associated neurotoxicity syndrome, or graft-versus-host disease. CAR-NK cells have enhanced targeting properties and demonstrated therapeutic efficacy against various types of cancer. However, they face substantial challenges, including complex operational procedures, high cost associated with long-term use, and safety concerns. Aptamers are single-stranded oligonucleotides and known as \"chemical antibodies\" because of their highly specific binding ability to targets. In this study, we designed a multivalent aptamer oligonucleotide complex containing four strands of CD30 aptamers to engineer and functionalize NK cells using click chemistry. Under aptamer guidance, multivalent aptamer oligonucleotide complex NK cells specifically bind to CD30-positive lymphoma cells and trigger more effective antitumor effects than that of parental NK cells, both ",
+        "summary": {
+          "目的": "本研究の目的は、クリックケミストリーを用いてNK細胞を機能化・改良することです。具体的には、CD30アプタマーを4本鎖含む多価アプタマーオリゴヌクレオチド複合体を設計し、これを利用してNK細胞をエンジニアリングすることを目指しました。",
+          "サンプル": "本研究では、実験対象としてNK細胞とCD30陽性リンパ腫細胞が用いられました。ただし、NK細胞の具体的な由来や詳細な種類、またリンパ腫細胞株の名称などについてはアブストラクト内に記載がありません。",
+          "解析手法": "本研究では、主にクリックケミストリーを利用してNK細胞を多価アプタマーオリゴヌクレオチド複合体で修飾し、機能化する手法が採用されました。修飾されたNK細胞の機能は、CD30陽性リンパ腫細胞に対する特異的結合能力と、親NK細胞と比較した抗腫瘍効果を指標に評価されました。",
+          "結果": "アプタマー複合体NK細胞は、CD30陽性リンパ腫細胞に特異的に結合する能力を有することが示されました。さらに、これらの改変NK細胞は、親NK細胞と比較してより効果的な抗腫瘍作用を発揮することが確認されました。",
+          "結論": "記載なし"
+        }
+      },
+      {
+        "pmid": "41309676",
+        "title": "Human plasma proteomic profile of clonal hematopoiesis.",
+        "pubdate": "2025 Nov 27",
+        "url": "https://doi.org/10.1038/s41467-025-66755-z",
+        "abstract": "Plasma proteomic profiles associated with subclinical somatic mutations in blood cells may offer insights into downstream clinical consequences. Here we explore these patterns in clonal hematopoiesis of indeterminate potential (CHIP), which is linked to several cancer and non-cancer outcomes, including coronary artery disease (CAD). Among 61,833 participants (3881 with CHIP) from TOPMed and UK Biobank (UKB) with blood-based DNA sequencing and proteomic measurements (1,148 proteins by SomaScan in TOPMed and 2917 proteins by Olink in UKB), we identify 32 and 345 proteins from TOPMed and UKB, respectively, associated with CHIP and most prevalent driver genes (DNMT3A, TET2, and ASXL1). These associations show substantial heterogeneity by driver genes, sex, and race, and were enriched for immune response and inflammation pathways. Mendelian randomization in humans, coupled with ELISA in hematopoietic Tet2-/- vs wild-type mice validation, disentangle causal proteomic perturbations from TET2 CHIP. Lastly, we identify plasma proteins shared between CHIP and CAD.",
+        "summary": {
+          "目的": "この研究の目的は、クローン性造血（CHIP）に関連する血漿プロテオームプロファイルと、それが下流の臨床的影響にどう関連するかを探ることです。特に、癌や冠動脈疾患（CAD）などの様々な疾患アウトカムと関連するCHIPにおけるこれらのパターンを調査しています。",
+          "サンプル": "サンプルは、TOPMedとUK Biobank（UKB）に登録された61,833人の参加者です。そのうち3,881人がCHIPを持つと識別され、血液ベースのDNAシーケンスとプロテオーム測定（TOPMedではSomaScanで1,148種類のタンパク質、UKBではOlinkで2,917種類のタンパク質）が実施されました。",
+          "解析手法": "CHIPおよび主要なドライバー遺伝子（DNMT3A、TET2、ASXL1）に関連する血漿タンパク質を特定しました。さらに、ヒトにおけるメンデルランダム化と、造血系Tet2欠損マウスと野生型マウスを用いたELISA検証を組み合わせることで、TET2 CHIPからの因果関係のあるプロテオーム摂動を解明しました。最後に、CHIPと冠動脈疾患（CAD）間で共有される血漿タンパク質も特定しました。",
+          "結果": "TOPMedからは32種類のタンパク質、UKBからは345種類のタンパク質がCHIPおよび主要なドライバー遺伝子と関連していることが特定されました。これらの関連性は、ドライバー遺伝子、性別、および人種によって大きな異質性を示し、免疫応答および炎症経路に豊富であることが示されました。",
+          "結論": "この研究は、CHIPに関連する血漿プロテオームプロファイルの多様性を明らかにし、特に免疫応答および炎症経路が重要な役割を果たすことを示唆しました。TET2 CHIPからの因果的なプロテオーム摂動を特定し、CHIPと冠動脈疾患間で共有されるタンパク質を同定したこれらの知見は、CHIPの臨床的意義と疾患メカニズムの理解を深める上で重要です。"
+        }
+      },
+      {
+        "pmid": "41305721",
+        "title": "Effective components of Coptidis Rhizoma and Cinnamomi Cortex in the treatment of renal cell carcinoma and their mechanism of action.",
+        "pubdate": "2025 Nov 21",
+        "url": "https://doi.org/10.1097/MD.0000000000043786",
+        "abstract": "This study aimed to investigate the mechanism of the Coptidis Rhizoma and Cinnamomi Cortex (HL-RG) drug pair in the intervention of renal cell carcinoma (RCC) using network pharmacology, molecular docking, and cell experiments. Network pharmacology analysis predicted 42 active components in HL-RG and identified 227 potential targets. Among these, 50 targets were specifically associated with RCC, and 18 were identified as hub genes. Three components (quercetin, oleic acid, tetrandrine) were highlighted as particularly effective. The results of the gene ontology (GO) annotation showed that HL-RG may treat RCC by regulating biological processes such as inflammation, immune response, cell cycle process, and lipid metabolism. Kyoto Gene and Genome Encyclopedia (KEGG) enrichment revealed that the key targets of HL-RG in treating RCC were enriched in the proteoglycans in cancer, and the HIF-1 signaling pathway. Molecular docking results demonstrated that 87% of the interactions exhibited binding energies stronger than -5.0 kcal/mol, indicating favorable binding affinity between the core active components and key targets. Experimental validation using quantitative real-time polymerase chain reaction and Western blot in 786-O cells demonstrated that tetrandrine (TET) and quercetin (QUE) downregulated the mRNA and protein levels of G1/S-specific cyclin-D1 (CCND1) and Transforming growth factor beta-1 (TGFB1), and upregulated the mRNA levels of Catalase (CAT). Additionally, QUE downregulated the mRNA levels of Receptor tyrosine-protein kinase erbB-2 (ERBB2) and upregulated the mRNA levels of Pro-epidermal growth factor (EGF). Furthermore, oleic acid (OA), TET, and QUE downregulated the protein levels of Matrix metalloproteinase-9 (MMP9). In conclusion, the therapeutic effect of the HL-RG combination against RCC is primarily mediated by its bioactive components, QUE, OA, and TET. These components regulate the HIF-1 signaling pathway, activating genes involved in the cellular response to hypoxia and modulating the expression of proteins that control glucose metabolism, cell proliferation, and angiogenesis.",
+        "summary": {
+          "目的": "本研究は、Coptidis RhizomaとCinnamomi Cortex (HL-RG) の薬物ペアが腎細胞癌 (RCC) の治療に介入するメカニズムを解明することを目的とした。具体的には、ネットワーク薬理学、分子ドッキング、および細胞実験を組み合わせてその作用機序を探求した。",
+          "サンプル": "細胞実験の検証には、786-O細胞株が使用された。この細胞は、HL-RGの主要な活性成分が遺伝子およびタンパク質の発現レベルに与える影響を評価するために用いられた。",
+          "解析手法": "解析手法として、ネットワーク薬理学、分子ドッキング、および細胞実験が多角的に用いられた。細胞実験では、定量的リアルタイムPCRとウェスタンブロットが実施され、標的遺伝子およびタンパク質の発現レベルが詳細に分析された。",
+          "結果": "ネットワーク薬理学により、HL-RGの42の活性成分とRCCに関連する227の潜在的標的が予測され、ケルセチン、オレイン酸、テトランドリンが特に有効な成分として特定された。GOおよびKEGG解析では、HL-RGが炎症、免疫応答、細胞周期、脂質代謝、がんにおけるプロテオグリカン、およびHIF-1シグナル経路を介してRCCを治療する可能性が示唆された。分子ドッキングでは、主要な活性成分と標的間の強力な結合親和性が確認され、細胞実験では、テトランドリンとケルセチンがCCND1やTGFB1などのmRNAおよびタンパク質レベルを下方制御し、CATを上方制御すること、さらにオレイン酸がMMP9のタンパク質レベルを下方制御することが実証された。",
+          "結論": "HL-RGの腎細胞癌に対する治療効果は、主にケルセチン、オレイン酸、テトランドリンといった生物活性成分によって媒介される。これらの成分は、HIF-1シグナル経路を調節し、低酸素応答に関与する遺伝子を活性化させ、さらにグルコース代謝、細胞増殖、血管新生を制御するタンパク質の発現を調整することで作用する。"
+        }
+      },
+      {
+        "pmid": "41305399",
+        "title": "Can Oncogenic Animal Viruses Pose a Threat to Humans?",
+        "pubdate": "2025 Nov 14",
+        "url": "https://doi.org/10.3390/pathogens14111163",
+        "abstract": "Oncogenic viruses are well-established contributors to cancer development in both humans and animals. While many animal oncogenic viruses exhibit strong host specificity, concerns remain about their potential to cross species barriers and impact human health. This article examines the classification and molecular mechanisms of oncogenic viruses, including retroviruses, papillomaviruses, herpesviruses, and hepadnaviruses, in animals. It explores historical cases of cross-species transmission, such as the contamination of early polio vaccines with simian virus 40 (SV40), which resulted from the use of rhesus monkey kidney cells and insufficient screening for latent simian viruses, and the hypothesised association between bovine leukaemia virus (BLV) and human breast cancer. To provide a broader comparative perspective, the discussion also includes examples of viruses with a lower economic impact, illustrating that zoonotic and oncogenic potential is not limited to commercially significant species. Biological barriers-including receptor specificity and immune defences-generally limit transmission; however, frequent human-animal interactions, consumption of contaminated food, and viral mutations may increase zoonotic risk. Advances in molecular diagnostics, such as polymerase chain reaction (PCR), next-generation sequencing (NGS), and serological testing, play a critical role in identifying emerging threats. Prevention strategies, including veterinary vaccination programs, biosafety protocols, and the One Health approach integrating human and veterinary medicine, are essential for mitigating risks. While current evidence indicates that oncogenic animal viruses do not significantly contribute to human cancers, ongoing surveillance and research remain crucial to detect emerging threats. Understanding viral oncogenesis in animals continues to provide valuable insights into cancer prevention and therapy in humans.",
+        "summary": {
+          "目的": "この論文は、動物における腫瘍ウイルス（レトロウイルス、パピローマウイルス、ヘルペスウイルス、ヘパドナウイルスなど）の分類と分子メカニズムを検証することを目的としています。また、初期ポリオワクチンへのSV40混入やウシ白血病ウイルス（BLV）とヒト乳がんの関連性など、種を超えた感染の歴史的な事例についても考察しています。これにより、人獣共通感染症としての潜在的な脅威に対する理解を深めます。",
+          "サンプル": "記載なし",
+          "解析手法": "記載なし",
+          "結果": "現在のエビデンスは、動物の腫瘍ウイルスがヒトのがんに大きく寄与しているわけではないことを示しています。しかし、生物学的障壁がある一方で、人間と動物の頻繁な相互作用、汚染された食品の摂取、ウイルスの変異が人獣共通感染症のリスクを高める可能性があります。",
+          "結論": "動物の腫瘍ウイルスはヒトのがんへ大きく寄与する可能性は低いとされていますが、新たな脅威を検出するためには継続的な監視と研究が不可欠です。動物におけるウイルス性腫瘍形成の理解は、ヒトのがん予防と治療に貴重な洞察をもたらし続けます。予防戦略としては、獣医ワクチンプログラム、バイオセーフティプロトコル、およびOne Healthアプローチの統合が重要です。"
+        }
+      },
+      {
+        "pmid": "41304838",
+        "title": "Nanoparticles Used for the Delivery of RNAi-Based Therapeutics.",
+        "pubdate": "2025 Nov 20",
+        "url": "https://doi.org/10.3390/pharmaceutics17111502",
+        "abstract": "RNA interference (RNAi) offers programmable, sequence-specific silencing via small interfering RNA (siRNA) and microRNA (miRNA), but clinical translation hinges on overcoming instability, immunogenicity, and inefficient endosomal escape. This review synthesizes advances in non-viral nanocarriers-liposomes, polymeric nanoparticles, and extracellular vesicles (EVs)-that stabilize nucleic acids, tune biodistribution, and enable organ- and cell-selective delivery. We highlight design levers that now define the field: ligand-guided targeting, stimuli-responsive release, biomimicry and endogenous carriers, and rational co-delivery with small molecules. Across major disease areas-cancer and cardiovascular, respiratory, and urological disorders-these platforms achieve tissue-selective uptake (e.g., macrophages, endothelium, and myocardium), traverse physiological barriers (including the blood-brain barrier and fibrotic stroma), and remodel hostile microenvironments or immune programs to enhance efficacy while maintaining favorable safety profiles. Early clinical studies reflect this diversity, spanning targeted nanoparticles, local drug depots, exosome and cellular carriers, and inhaled formulations, e.g., and converge on core phase-I endpoints (safety, maximum tolerated dose, pharmacokinetics/pharmacodynamics, and early activity). Looking ahead, priorities include good manufacturing practice scale, consistent manufacture-especially for EVs; more efficient loading and cargo control; improved endosomal escape and biodistribution; and rigorous, long-term safety evaluation with standardized, head-to-head benchmarking. Emerging directions such as in vivo EVs biogenesis, theragnostic integration, and data-driven formulation discovery are poised to accelerate translation. Collectively, nanoparticle-enabled RNAi has matured into a versatile, clinically relevant toolkit for precise gene silencing, positioning the field to deliver next-generation therapies across diverse indications.",
+        "summary": {
+          "目的": "RNA干渉 (RNAi) の臨床応用における不安定性、免疫原性、および非効率なエンドソーム脱出といった主要な課題を克服することを目的としている。このレビューは、核酸の安定化、生体内分布の調整、臓器・細胞選択的送達を可能にする非ウイルス性ナノキャリア（リポソーム、高分子ナノ粒子、細胞外小胞など）の進歩を統合的にまとめている。",
+          "サンプル": "記載なし",
+          "解析手法": "記載なし",
+          "結果": "非ウイルス性ナノキャリアは、RNAiの安定性、生体内分布、送達効率の課題を解決し、がん、心血管疾患、呼吸器疾患、泌尿器疾患などの主要な疾患領域で有効性を示した。これらのプラットフォームは、マクロファージや内皮細胞、心筋といった組織への選択的取り込みを達成し、血液脳関門などの生理学的障壁を通過し、敵対的な微小環境を改善することで、良好な安全性プロファイルを維持しながら治療効果を高めることができた。",
+          "結論": "ナノ粒子を用いたRNAiは、精密な遺伝子サイレンシングのための多用途かつ臨床的に関連性の高いツールキットへと成熟した。この分野は、多様な適応症に対して次世代治療法を提供する位置にあり、今後はGMPスケール化、製造の一貫性、効率的なローディング、エンドソーム脱出の改善、および厳格な長期安全性評価が優先事項となる。"
+        }
+      },
+      {
+        "pmid": "41303682",
+        "title": "Non-Coding RNA in Type 2 Diabetes Cardio-Renal Complications and SGLT2 Inhibitor Response.",
+        "pubdate": "2025 Nov 19",
+        "url": "https://doi.org/10.3390/ijms262211198",
+        "abstract": "Type 2 diabetes mellitus (T2DM) is characterized by an uncontrolled increase in blood glucose levels and insulin resistance in cells of various tissues. Vascular complications in T2DM have an inflammatory nature. Drugs with different mechanisms of action have been developed and used to treat T2DM, initially aimed at controlling blood glucose levels. Among them, sodium-glucose cotransporter 2 inhibitors (SGLT2-i) were developed as specific inhibitors of glucose reabsorption in the kidneys, but along with lowering blood glucose levels, they demonstrated multiple (including non-glycemic) positive effects in the treatment of T2DM related to their beneficial effects on the immune system. SGLT2 inhibitors can reduce the risk of diabetic cardiomyopathy (DCM) and chronic kidney disease (CKD) development in patients with and without diabetes. SGLT2-is improve cardio-renal complications through a number of signaling pathways, including those dependent on the involvement of non-coding RNAs (ncRNAs) and their targets. The best-studied classes of ncRNAs are microRNAs, which are short (less than 200 bases) RNAs (miRNAs), long non-coding RNAs (lncRNAs) (more than 200 bases), and circular RNAs (circRNAs). The regulatory effect of ncRNAs has broad physiological significance, and changes in the ncRNAs' expression are associated with the pathogenesis of different diseases, including T2DM. RNA-seq allows the construction of networks of interactions of lncRNA/circRNA-miRNA-mRNA called competitive endogenous RNA (ceRNA) networks, to identify clinically significant molecular markers, to improve the mechanistic understanding of pathogenesis, and to contribute to the development of new diagnostics and therapies. Our review summarizes the role of non-coding RNA in the action of SGLT2 inhibitors in cardio-renal complications in T2DM. We focus on methods of detection, genetics, and the effects of non-coding RNA. Specific attention is given to the role of non-coding RNAs in the inflammatory reactions of innate immune cells in relation to the SGLT2 inhibitors.",
+        "summary": {
+          "目的": "本レビューは、2型糖尿病（T2DM）における心腎合併症に対するSGLT2阻害剤の作用における非コードRNAの役割を要約することを目的としています。具体的には、非コードRNAの検出方法、遺伝学、およびその効果に焦点を当てます。また、SGLT2阻害剤との関連で、自然免疫細胞の炎症反応における非コードRNAの役割に特別な注意を払います。",
+          "サンプル": "記載なし",
+          "解析手法": "記載なし",
+          "結果": "記載なし",
+          "結論": "記載なし"
+        }
+      }
+    ]
+  },
+  {
+    "title": "Cancer proteome and biomarker discovery",
+    "keywords": [
+      "Cancer",
+      "proteome",
+      "biomarker",
+      "discovery"
+    ],
+    "search_period": "2025-11-27-2025-11-29",
+    "paper_count": 3,
+    "papers": [
+      {
+        "pmid": "41309202",
+        "title": "Protein misfolding and cancer - proteomics as an approach for biomarker discovery.",
+        "pubdate": "2025",
+        "url": "https://doi.org/10.1016/bs.apcsb.2025.08.006",
+        "abstract": "The unfolded protein response (UPR) refers to a cellular response mechanism that occurs in response to the accumulation of misfolded or incompletely folded proteins in the ER, that maintains proteostasis. While the major aim of UPR is to restrain cell homeostasis, prolonged stages results in apoptosis. The oncogenic circumstances are typically ER stressors, and UPR activation encourages the oncogenic transformation process, in which all UPR signaling branches support the development of tumors, angiogenesis, immune invasion, and resistance to chemotherapy. Proteomics is a high throughput, large-scale comprehensive study of proteins, their structures, and functions including their interactions with each other. Proteomics has now emerged as a very crucial and robust technique for biomarker discovery especially in diseases such as cancer. We summarize the use of proteomics techniques emphasizing the identification of UPR-related biomarkers by enabling the examination of protein-level alterations and modifications that propel UPR-mediated carcinogenesis. This could further be exploited for the early detection, prognosis, diagnosis and for therapeutic interventions for ER stress-mediated and UPR-mediated malignancies. This review elucidates the significant role and importance of different proteomic technologies and strategies in revealing UPR-mediated pathways in cancer, identifying main UPR effectors including GRP78, p53, PERK, IRE1α, and ATF6, and examines their potential as biomarkers for different cancer types. Integrating proteomic data with systems biology and machine learning techniques would further enhance our comprehension of UPR signaling in oncogenesis and facilitate the development of innovative tactics for personalized cancer therapy.",
+        "summary": {
+          "目的": "本レビューは、未折りたたみタンパク質応答（UPR）を介した癌発生におけるプロテオミクス技術の利用をまとめることを目的としています。特に、UPR関連のバイオマーカーの同定に焦点を当て、癌におけるUPR関連経路を明らかにし、主要なUPRエフェクターの潜在的なバイオマーカーとしての役割を検討する重要性を強調しています。",
+          "サンプル": "記載なし",
+          "解析手法": "本レビューは、特定の実験やデータ解析を行ったものではなく、プロテオミクス技術とその戦略に関する既存の知見をまとめる手法を用いています。これにより、UPRを介した癌発生におけるタンパク質レベルの変動や修飾の検討が可能となることを提示しています。",
+          "結果": "UPRは癌原性環境において活性化され、腫瘍の発生、血管新生、免疫回避、化学療法耐性を促進することが示されています。プロテオミクス技術は、UPRを介した癌発生におけるタンパク質レベルの変化を明らかにし、GRP78、p53、PERK、IRE1α、ATF6などの主要なUPRエフェクターが異なる癌種においてバイオマーカーとして機能する可能性を明らかにしました。",
+          "結論": "プロテオミクス技術は、UPRを介した癌の早期発見、予後診断、および治療介入に貢献する可能性を秘めています。システム生物学や機械学習技術と統合することで、癌発生におけるUPRシグナル伝達の理解を深め、個別化された癌治療のための革新的な戦略開発を促進できると結論付けています。"
+        }
+      },
+      {
+        "pmid": "41303058",
+        "title": "Redefining the Diagnostic and Therapeutic Landscape of Non-Small Cell Lung Cancer in the Era of Precision Medicine.",
+        "pubdate": "2025 Nov 12",
+        "url": "https://doi.org/10.3390/jcm14228021",
+        "abstract": "Non-small cell lung cancer (NSCLC) remains a leading cause of cancer-related mortality globally, driven by marked molecular and cellular heterogeneity that complicates diagnosis and treatment. Despite advances in targeted therapies and immunotherapies, treatment resistance frequently emerges, and clinical benefits remain limited to specific molecular subtypes. To improve early detection and dynamic monitoring, novel diagnostic strategies-including liquid biopsy, low-dose computed tomography scans (CT) with radiomic analysis, and AI-integrated multi-modal platforms-are under active investigation. Non-invasive sampling of exhaled breath, saliva, and sputum, and high-throughput profiling of peripheral T-cell receptors and immune signatures offer promising, patient-friendly biomarker sources. In parallel, multi-omic technologies such as single-cell sequencing, spatial transcriptomics, and proteomics are providing granular insights into tumor evolution and immune interactions. The integration of these data with real-world clinical evidence and machine learning is refining predictive models and enabling more adaptive treatment strategies. Emerging therapeutic modalities-including antibody-drug conjugates, bispecific antibodies, and cancer vaccines-further expand the therapeutic landscape. This review synthesizes recent advances in NSCLC diagnostics and treatment, outlines key challenges, and highlights future directions to improve long-term outcomes. These advancements collectively improve personalized and effective management of NSCLC, offering hope for better-quality survival. Continued research and integration of cutting-edge technologies will be crucial to overcoming current challenges and achieving long-term clinical success.",
+        "summary": {
+          "目的": "このレビューは、非小細胞肺がん（NSCLC）の診断と治療における最近の進歩を統合し、主要な課題を概説するものです。長期的な治療成果を向上させるための将来の方向性を強調することを目的としています。",
+          "サンプル": "このレビューで言及されている新しい診断戦略では、呼気、唾液、喀痰といった非侵襲的な生体液サンプルや、末梢T細胞受容体、免疫シグネチャのプロファイリングが有望なバイオマーカー源として挙げられています。これらは非小細胞肺がんの早期発見と動的モニタリングのための診断に使用される可能性を持つサンプルです。",
+          "解析手法": "新しい診断戦略として、放射線学的解析を伴う低線量CTスキャンやAI統合型マルチモーダルプラットフォームが調査中であると述べられています。また、シングルセルシーケンシング、空間トランスクリプトミクス、プロテオミクスといったマルチオミクス技術が腫瘍の進化と免疫相互作用の深い洞察を提供し、これらのデータは機械学習と統合され、予測モデルの洗練に用いられています。",
+          "結果": "このレビューでは、非小細胞肺がんの診断と治療における様々な進歩が統合されています。これらの進歩は、NSCLCの個別化された効果的な管理を改善し、患者のより質の高い生存への希望を提供しているとされています。",
+          "結論": "非小細胞肺がんの診断と治療におけるこれらの進歩は、個別化された効果的な管理を可能にし、より質の高い生存への希望をもたらします。現在の課題を克服し、長期的な臨床的成功を達成するためには、継続的な研究と最先端技術の統合が不可欠であると結論付けられています。"
+        }
+      },
+      {
+        "pmid": "41301080",
+        "title": "Bridging Discovery and Treatment: Cancer Biomarker.",
+        "pubdate": "2025 Nov 20",
+        "url": "https://doi.org/10.3390/cancers17223720",
+        "abstract": "Biomarkers have transformed cancer care by linking molecular insights to personalized treatment strategies. This review first surveys the spectrum of detection modalities, including tissue genomics and histopathology; liquid biopsies such as circulating tumor DNA (ctDNA), circulating tumor cells (CTCs), and extracellular vesicles; imaging and radiomics; and multi-omic approaches spanning epigenomics, transcriptomics, proteomics, metabolomics, and microbiomics. We then critically appraise the translational challenges that hinder clinical implementation, assay standardization, data integration, analytical and clinical validation, regulatory pathways, and cost-effectiveness. Finally, we explore emerging solutions, including artificial intelligence (AI)-driven multi-modal phenotyping, adaptive trial designs, and point-of-care assays, and outline future directions for expanding access and equitable adoption. By emphasizing the central role of biomarkers in guiding targeted and immune-based therapies, we underscore their potential to overcome tumor heterogeneity, preempt resistance, and ultimately improve patient outcomes.",
+        "summary": {
+          "目的": "本レビューの目的は、バイオマーカーの多様な検出法、臨床導入における課題、そして新たな解決策を網羅的に評価することです。これにより、がんの個別化治療や免疫療法におけるバイオマーカーの中心的な役割を強調し、患者の転帰改善への可能性を示すことを目指しています。",
+          "サンプル": "記載なし",
+          "解析手法": "記載なし",
+          "結果": "本レビューでは、組織ゲノミクスや組織病理学、液体生検（ctDNA、CTC、細胞外小胞など）、イメージング、マルチオミクスといった幅広いバイオマーカー検出モダリティを調査しました。さらに、臨床導入を妨げる課題（アッセイ標準化、データ統合、規制経路など）を特定し、人工知能駆動のマルチモーダル表現型解析や適応的試験デザインなどの新興ソリューションを検討しました。",
+          "結論": "バイオマーカーは、個別化された標的療法や免疫療法を導く上で極めて重要な役割を果たします。これらは腫瘍の不均一性を克服し、薬剤耐性の発生を未然に防ぎ、最終的に患者の治療成績を向上させる大きな可能性を秘めていると結論付けられます。"
+        }
+      }
+    ]
+  }
+]
