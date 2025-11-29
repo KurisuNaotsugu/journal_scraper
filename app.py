@@ -9,25 +9,24 @@ from keyword_tracker import ktracker_bp
 
 
 def create_app():
-    '''Flask アプリケーションを作成し、Blueprint を登録する関数
-    - topページを /main にリダイレクト
-    - Gemini API クライアントを作成し、アプリケーション設定に保存
-    
+    '''Flask アプリケーションを作成し
+
     Returns:
         Flask: Flask アプリケーションインスタンス
     '''
+    # Generate Gemini API Client
+    client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+    app.config['GENAI_CLIENT'] = client
+
+    # Flassk アプリケーションの作成
     app = Flask(__name__)
 
-    # Redirect the top page to /main
+    # トップページをビューにリダイレクト
     @app.route('/')
     def index():
         return redirect(url_for('view.view_page'))
     
-    # Generate Gemini API Client
-    client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
-    app.config['GENAI_CLIENT'] = client
-    
-    # Register Blueprint
+    # Blueprint登録
     app.register_blueprint(view_bp, url_prefix='/view')
     app.register_blueprint(ktracker_bp, url_prefix='/ktracker')
     
