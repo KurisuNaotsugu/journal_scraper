@@ -12,7 +12,7 @@
 </head>
 <nav class="navbar navbar-expand-lg navbar-dark bg-success mb-4 px-3">
     <a class="navbar-brand fw-bold" href="{{ url_for('viewer.view_page') }}">
-        Paper Review Viewer
+        Pubmed Paper Reviewer
     </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
@@ -21,17 +21,22 @@
 
     <div class="collapse navbar-collapse" id="mainNavbar">
         <ul class="navbar-nav ms-auto">
+
+            <!-- Viewer -->
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('viewer.view_page') }}">Viewer</a>
             </li>
 
+            <!-- Manual Search（ルート "/" → manualsearch.index） -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('manual_search.run') }}">Manual Search</a>
+                <a class="nav-link" href="{{ url_for('manual_search.index') }}">Manual Search</a>
             </li>
 
+            <!-- Keyword Tracker -->
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('ktracker.weekly_graph') }}">Keyword Tracker</a>
             </li>
+
         </ul>
     </div>
 </nav>
