@@ -10,6 +10,31 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('viewer.static', filename='css/viewer.css') }}">
 </head>
+<nav class="navbar navbar-expand-lg navbar-dark bg-success mb-4 px-3">
+    <a class="navbar-brand fw-bold" href="{{ url_for('viewer.view_page') }}">
+        Paper Review Viewer
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('viewer.view_page') }}">Viewer</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('manual_search.run') }}">Manual Search</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('ktracker.weekly_graph') }}">Keyword Tracker</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 <body>
 
 <div class="container-fluid">
@@ -27,7 +52,7 @@
                                 📌 {{ fn }}
                             </div>
                         {% else %}
-                            <a href="{{ url_for('viewer_bp.view_page') }}?file={{ fn }}">
+                            <a href="{{ url_for('viewer.view_page') }}?file={{ fn }}">
                                 <div class="archive-item">
                                     📄 {{ fn }}
                                 </div>
@@ -60,4 +85,5 @@
 <script src="{{ url_for('viewer.static', filename='js/viewer.js') }}"></script>
 
 </body>
+
 </html>

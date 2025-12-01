@@ -11,8 +11,8 @@ body {
     border-radius: 12px;
     border: none;
     box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-    padding: 1rem;           /* 内部余白 */
-    margin-bottom: 1rem;     /* カード間の余白 */
+    padding: 1.5rem;           /* 内部余白 */
+    margin-bottom: 1.5rem;     /* カード間の余白 */
     background-color: #fff;
 }
 
