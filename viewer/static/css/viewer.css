@@ -9,10 +9,10 @@ body {
 /* ▼ カード */
 .card {
     border-radius: 12px;
-    border: none;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-    padding: 1.5rem;           /* 内部余白 */
-    margin-bottom: 1.5rem;     /* カード間の余白 */
+    border: 1px solid #b5b5b5;     /* ★やや濃いボーダー追加 */
+    box-shadow: 0 4px 18px rgba(0,0,0,0.15);  /* ★影を濃く */
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
     background-color: #fff;
 }
 
@@ -21,6 +21,12 @@ body {
 }
 
 .card p {
+    margin-bottom: 0.5rem;
+}
+
+.paper-card h6 {
+    text-align: center;
+    font-weight: 700;
     margin-bottom: 0.5rem;
 }
 
@@ -47,6 +53,10 @@ body {
     height: 100vh;
     overflow-y: auto;
     border-right: 2px solid #d0d0d0;
+}
+
+.sidebar .header-title {
+    text-align: center;   /* ★追加：Archive 見出しを中央揃え */
 }
 
 .sidebar a {
@@ -84,4 +94,14 @@ body {
 
 .list-group-item {
     background: transparent;
-    borde
+    border: none;
+    padding: 0.5rem 0;
+}
+
+.summary-list {
+    padding-left: 1.2rem; /* 左余白を確保 */
+}
+
+.summary-list li p {
+    margin-bottom: 0.3rem; /* 行間を少し詰めるとスッキリ */
+}

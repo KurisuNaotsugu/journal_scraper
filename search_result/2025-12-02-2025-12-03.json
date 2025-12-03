@@ -1,0 +1,84 @@
+[
+  {
+    "title": "Kidney Cancer immune therapy papers",
+    "keywords": [
+      "kidney",
+      "cancer",
+      "immune",
+      "therapy"
+    ],
+    "search_period": "2025-12-02-2025-12-03",
+    "paper_count": 3,
+    "papers": [
+      {
+        "pmid": "41333786",
+        "title": "Case Report: Gemcitabine-induced membranoproliferative glomerulonephritis with immune complexes in a patient with metastatic pancreatic cancer.",
+        "pubdate": "2025",
+        "url": "https://doi.org/10.3389/fmed.2025.1666859",
+        "abstract": "Gemcitabine is a widely used chemotherapeutic agent for pancreatic adenocarcinoma, that is associated with rare but serious renal complications including thrombotic microangiopathy (TMA). We report a unique case of biopsy-proven membranoproliferative glomerulonephritis (MPGN) with immune complex deposition in a woman receiving gemcitabine for metastatic pancreatic cancer. She developed new-onset hypertension, proteinuria, microscopic hematuria, and progressive renal dysfunction shortly following initiation of gemcitabine. Extensive autoimmune, complement, paraprotein, and viral serologies were unremarkable aside from a low haptoglobin. Kidney biopsy revealed an MPGN pattern with immune deposits. Gemcitabine was discontinued, and the patient was treated with corticosteroids and kidney-protective therapies targeting blood pressure and proteinuria reduction. Her proteinuria decreased significantly, and her renal function returned back to baseline. This case highlights a rare manifestation of gemcitabine-induced nephrotoxicity with immune complex MPGN, suggesting a possible novel mechanism of drug-associated glomerular injury.",
+        "summary": {
+          "目的": "転移性膵癌に対しゲムシタビンを投与されていた女性患者に発症した、生検で確認された免疫複合体沈着を伴う膜増殖性糸球体腎炎（MPGN）の稀な症例を報告することです。この症例を通じて、ゲムシタビン誘発性腎毒性の稀な病態と、薬剤関連糸球体損傷の新たなメカニズムの可能性を提示することを目指しています。",
+          "サンプル": "転移性膵癌の治療のためにゲムシタビンを投与されていた一人の女性患者がサンプルです。この患者は、ゲムシタビン開始後に新たな高血圧、蛋白尿、顕微鏡的血尿、進行性腎機能障害を発症しました。",
+          "解析手法": "患者の腎機能障害の原因を特定するため、広範な自己免疫、補体、パラプロテイン、ウイルスに関する血清学的検査が実施されました。最終的に、腎生検が行われ、糸球体腎炎の病理学的パターンが詳細に解析されました。",
+          "結果": "ゲムシタビン開始後すぐに、患者は新たな高血圧、蛋白尿、顕微鏡的血尿、進行性腎機能障害を発症しました。腎生検により、免疫複合体沈着を伴う膜増殖性糸球体腎炎のパターンが確認されました。ゲムシタビンの中止と副腎皮質ステロイドによる治療の結果、蛋白尿は有意に減少し、腎機能はベースラインに戻りました。",
+          "結論": "この症例は、ゲムシタビン誘発性腎毒性において免疫複合体膜増殖性糸球体腎炎という稀な病態が存在することを浮き彫りにしています。この発見は、薬剤関連糸球体損傷のこれまでに知られていない新たなメカニズムが存在する可能性を示唆しています。"
+        }
+      },
+      {
+        "pmid": "41332849",
+        "title": "Radiologic, Pathologic, and Deep Learning Predictors of Response to Immune Checkpoint Blockade in Renal Cell Carcinoma Patients Undergoing Post-Treatment Nephrectomy.",
+        "pubdate": "2025 Nov 20",
+        "url": "https://doi.org/10.1101/2025.11.19.25340277",
+        "abstract": "Response assessment of primary kidney tumors in the consolidation cytoreductive and neoadjuvant settings offers a unique opportunity to inform postoperative adaptive treatment strategies. Yet, systematic analyses evaluating radiology, pathology, and machine learning are lacking.",
+        "summary": {
+          "目的": "本アブストラクトは、consolidation cytoreductiveおよびneoadjuvant設定における原発性腎腫瘍の反応評価に関して、放射線学、病理学、および機械学習を統合した系統的な分析が不足している現状を指摘しています。この不足を解消し、これらの評価手法を統合的に分析することで、術後の適応治療戦略に情報を提供することが本研究の目的であると考えられます。",
+          "サンプル": "記載なし",
+          "解析手法": "記載なし",
+          "結果": "記載なし",
+          "結論": "記載なし"
+        }
+      },
+      {
+        "pmid": "41329315",
+        "title": "A new era in CAR-NK cell therapy: from technological innovations to clinical applications.",
+        "pubdate": "2025 Dec 2",
+        "url": "https://doi.org/10.1007/s12519-025-00998-0",
+        "abstract": "As an emerging type of immune cell therapy, chimeric antigen receptor natural killer (CAR-NK) cells have shown great potential in the treatment of both tumors and autoimmune diseases. Compared with CAR-T cells, CAR-NK cells have a lower risk of cytokine release syndrome and neurotoxicity and have the potential for \"off-the-shelf\" treatment from a wide range of sources including peripheral blood, umbilical cord blood, induction blood, and pluripotent stem cells (iPSCs).",
+        "summary": {
+          "目的": "本アブストラクトは、新興の免疫細胞療法であるCAR-NK細胞が、腫瘍および自己免疫疾患の治療において示す大きな可能性について概説することを目的としている。CAR-T細胞と比較した際の安全性や、多様な供給源から「off-the-shelf」治療として利用できる利点を提示している。",
+          "サンプル": "記載なし",
+          "解析手法": "記載なし",
+          "結果": "記載なし",
+          "結論": "CAR-NK細胞は、腫瘍と自己免疫疾患の両方に対して非常に有望な免疫細胞療法であると結論付けられる。この細胞は、CAR-T細胞に比べてサイトカイン放出症候群や神経毒性のリスクが低く、末梢血、臍帯血、iPSCなど幅広い供給源から既製品として利用できる可能性を秘めているため、将来の治療法として大きな期待が寄せられている。"
+        }
+      }
+    ]
+  },
+  {
+    "title": "Cancer proteome and biomarker discovery",
+    "keywords": [
+      "Cancer",
+      "proteome",
+      "biomarker",
+      "discovery"
+    ],
+    "search_period": "2025-12-02-2025-12-03",
+    "paper_count": 1,
+    "papers": [
+      {
+        "pmid": "41332478",
+        "title": "Integrating multi-omics data: Methods and applications in human complex diseases.",
+        "pubdate": "2025 Dec",
+        "url": "https://doi.org/10.1016/j.btre.2025.e00938",
+        "abstract": "Over the past few decades, technological advancements and declining costs of high-throughput data generation have revolutionized biomedical research, enabling the collection of large-scale datasets across multiple omics layers-including genomics, transcriptomics, proteomics, metabolomics, and epigenomics. The analysis and integration of these datasets provides global insights into biological processes and holds great promise in elucidating the myriad molecular interactions associated with human diseases, particularly multifactorial ones such as cancer, cardiovascular, and neurodegenerative disorders. However, integrating multi-omics data presents significant challenges due to high dimensionality and heterogeneity. This review explores computational methods for integrating multi-omics data, with a particular focus on network-based approaches that offer a holistic view of relationships among biological components in health and disease. Furthermore, this review showcases a selection of recent, successful applications of multi-omics data integration, moving beyond theoretical methods to demonstrate their transformative potential in biomarker discovery, patient stratification, and guiding therapeutic interventions in specific human diseases.",
+        "summary": {
+          "目的": "このレビューの目的は、マルチオミクスデータ統合のための計算手法、特にネットワークベースのアプローチを探求することです。また、マルチオミクスデータ統合の最近の成功事例を提示し、疾患におけるバイオマーカー発見や患者層別化、治療介入への応用可能性を示すことも目指しています。",
+          "サンプル": "記載なし",
+          "解析手法": "このレビューでは、マルチオミクスデータ統合のための計算手法、特に生物学的要素間の関係を全体的に捉えるネットワークベースのアプローチを探求しています。これらの手法は、高次元性と不均一性といったマルチオミクスデータの統合における課題に対処するために用いられます。",
+          "結果": "記載なし",
+          "結論": "マルチオミクスデータ統合は、バイオマーカー発見、患者層別化、および特定のヒト疾患における治療介入の指針となる、変革的な可能性を秘めていることが示唆されます。特に、ネットワークベースのアプローチは、複雑な生物学的関係を包括的に理解するために有望です。"
+        }
+      }
+    ]
+  }
+]
