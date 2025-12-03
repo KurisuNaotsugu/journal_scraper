@@ -1,50 +1,13 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>PubMed Trend Checker</title>
+{% extends "base.html" %}
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+{% block title %}PubMed Trend Checker{% endblock %}
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ url_for('ktracker.static', filename='css/ktracker.css') }}">
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('ktracker.static', filename='css/ktracker.css') }}">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
 
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<nav class="navbar navbar-expand-lg navbar-dark bg-success mb-4 px-3">
-    <a class="navbar-brand fw-bold" href="{{ url_for('viewer.view_page') }}">
-        Pubmed Paper Reviewer
-    </a>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="mainNavbar">
-        <ul class="navbar-nav ms-auto">
-
-            <!-- Viewer -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('viewer.view_page') }}">Viewer</a>
-            </li>
-
-            <!-- Manual Search（ルート "/" → manualsearch.index） -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('manual_search.index') }}">Manual Search</a>
-            </li>
-
-            <!-- Keyword Tracker -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('ktracker.weekly_graph') }}">Keyword Tracker</a>
-            </li>
-
-        </ul>
-    </div>
-</nav>
-<body class="p-4">
-
+{% block content %}
 <div class="container">
 
     <h2 class="header-title mb-4">【PubMed】キーワードトレンドチェッカー</h2>
@@ -54,7 +17,7 @@
 
             <div class="mb-3">
                 <label class="form-label">検索キーワード（カンマ区切り）</label>
-                <input type="text" class="form-control" name="keywords" placeholder="例：cancer immune therapy" value="{{ keywords_str }}" required>
+                <input type="text" class="form-control" name="keywords" value="{{ keywords_str }}" required>
             </div>
 
             <div class="mb-3">
@@ -67,25 +30,23 @@
     </div>
 
     {% if labels %}
-    <div class="chart-container">
+    <div class="chart-container mt-4">
         <canvas id="weeklyChart"></canvas>
     </div>
-
-    <!-- Draw chart -->
-    <script src="{{ url_for('ktracker.static', filename='js/ktracker.js') }}"></script>
-    <script>
-        drawTrendChart(
-            {{ labels | tojson }},
-            {{ values | tojson }},
-            "{{ keywords_str }}"
-        );
-    </script>
     {% endif %}
 
 </div>
+{% endblock %}
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
-</html>
+{% block extra_js %}
+<script src="{{ url_for('ktracker.static', filename='js/ktracker.js') }}"></script>
+<script>
+{% if labels %}
+    drawTrendChart(
+        {{ labels | tojson }},
+        {{ values | tojson }},
+        "{{ keywords_str }}"
+    );
+{% endif %}
+</script>
+{% endblock %}
