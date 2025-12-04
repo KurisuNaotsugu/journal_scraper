@@ -1,0 +1,112 @@
+[
+  {
+    "title": "Kidney Cancer immune therapy papers",
+    "keywords": [
+      "kidney",
+      "cancer",
+      "immune",
+      "therapy"
+    ],
+    "search_period": "2025-12-03-2025-12-05",
+    "paper_count": 4,
+    "papers": [
+      {
+        "pmid": "41341560",
+        "title": "Bilateral Carpal Tunnel Syndrome Induced by Nivolumab Immunotherapy.",
+        "pubdate": "2025 Oct",
+        "url": "https://doi.org/10.7759/cureus.95866",
+        "abstract": "Checkpoint inhibitors have been the cornerstone in the treatment of many advanced cancers. Despite their efficacy, these therapies can lead to a wide range of immune-related adverse events, some of which may cause neurological toxicity and present significant clinical challenges. We describe the case of a 78-year-old man who developed bilateral carpal tunnel syndrome while receiving nivolumab for metastatic collecting duct carcinoma of the kidney. His symptoms showed marked improvement following corticosteroid therapy and the discontinuation of immunotherapy. This case underscores the critical need for the prompt recognition and collaborative management of neurological immune-related adverse events to optimize patients' outcomes.",
+        "summary": {
+          "目的": "本アブストラクトは、免疫チェックポイント阻害薬（ニボルマブ）治療中に両側手根管症候群を発症した78歳男性の症例を報告することを目的としています。これは、免疫チェックポイント阻害薬に起因する神経学的免疫関連有害事象の具体例を示すものです。",
+          "サンプル": "対象は、転移性集合管癌の治療のためニボルマブを投与されていた78歳の男性1名です。この男性は治療中に両側手根管症候群を発症しました。",
+          "解析手法": "本報告は特定の統計的または実験的な解析手法を用いていません。主に患者の臨床経過、症状の発現、および治療への反応を記述しています。",
+          "結果": "患者の両側手根管症候群の症状は、コルチコステロイド療法と免疫療法の中止後に著しい改善を示しました。これは、免疫チェックポイント阻害薬が神経学的合併症を引き起こす可能性と、その管理方法を示唆しています。",
+          "結論": "本症例は、免疫関連神経学的有害事象を迅速に認識し、共同で管理することの重要性を強調しています。これにより、患者の転帰を最適化できると結論付けています。"
+        }
+      },
+      {
+        "pmid": "41340573",
+        "title": "Predictors of Acute Kidney Injury in Patients Prescribed Immune Checkpoint Inhibitor Therapy and Their Association with Death: A Systematic Review and Meta-Analysis.",
+        "pubdate": "2025 Dec 4",
+        "url": "https://doi.org/10.1080/07357907.2025.2595304",
+        "abstract": "Immune checkpoint inhibitors (ICIs) are a novel and promising anti-cancer therapy. We conducted this systematic review to precisely quantify the occurrence and development for actue kidney injury(AKI) following ICIs treatment for cancer. We conducted a search of the PubMed, Embase, Web of Science, and Cochrane Library databases. Twenty-nine studies, comprising 24,953 cancer patients who received ICIs were finally eligible. The incidence of AKI was 16.2% (95%CI:12.8%-19.8%); the incidence of immune checkpoint inhibitor-associated acute kidney injury (ICPi-AKI) was 3.1%(95%CI:2.4%-4%); the incidence of non-ICPi-AKI was 11.2%(95%CI:8.4%-14.3%), and the incidence of sustained AKI was 14.9%(95%CI:7.5%-24.3%). Patients who developed AKI (HR = 1.521(95%CI:1.208-1.916)) and ICPi-AKI (HR = 1.407(95%CI:1.059-1.869)) exhibited an elevated risk of all-cause mortality. An increased risk for AKI was observed with preexisting chronic kidney disease (CKD) and combined with other extrarenal immune-related adverse events (irAEs). The use of nonsteroidal anti-inflammatory drugs (NSAIDs), proton pump inhibitor (PPI), diuretic, renin-angiotensin-aldosterone system (RAASi), antibiotics and fluidone was also significantly associated with incident AKI. Combined therapy had a greater impact on renal injury compared to monotherapy. Patients using ipilimumab were more prone to developing AKI, compared to those using nivoluma. CTLA4 (ref'PD-1) was associated with a higher likelihood of sustained AKI. The use of PDL-1(ref='PD-1) was linked to an increased susceptibility to ICPi-AKI. The occurrence of AKI was intricately linked to specific complications, the concomitant use of certain medications, and the specific regimen of ICIs. This deserves our attention.",
+        "summary": {
+          "目的": "本システマティックレビューは、がん患者が免疫チェックポイント阻害剤（ICIs）治療を受けた後の急性腎障害（AKI）の発生と進行を定量的に評価することを目的としています。ICI治療に関連するAKIの全体的な発生率および特定のサブタイプ（ICPi-AKIなど）の発生率を明らかにしようとしました。",
+          "サンプル": "本研究の対象は、PubMed、Embase、Web of Science、Cochrane Libraryのデータベース検索によって特定された29件の研究でした。これらの研究には、ICIsの治療を受けた合計24,953人のがん患者が含まれています。",
+          "解析手法": "本研究はシステマティックレビューの手法を用いて実施されました。主要な医学データベースから関連する文献を網羅的に検索し、抽出されたデータを統合してAKIの発生率と関連因子を評価しました。",
+          "結果": "ICI治療後のAKIの発生率は16.2%（95%CI:12.8%-19.8%）、免疫チェックポイント阻害剤関連AKI（ICPi-AKI）の発生率は3.1%でした。AKIおよびICPi-AKIを発症した患者は、全死因死亡リスクがそれぞれ1.521倍および1.407倍に上昇しました。既存の慢性腎臓病、他の免疫関連有害事象との併発、NSAIDsやPPIなどの特定の併用薬の使用、および併用療法やイピリムマブの使用がAKIのリスク増加と関連していました。",
+          "結論": "ICI治療におけるAKIの発生は、特定の合併症、併用薬の使用、およびICIsの具体的な治療レジメンと複雑に密接に関連していることが明らかになりました。これらの要因は、ICI治療を受けるがん患者のAKIリスク管理において重要な考慮事項であり、さらなる注意を払う必要があります。"
+        }
+      },
+      {
+        "pmid": "41333786",
+        "title": "Case Report: Gemcitabine-induced membranoproliferative glomerulonephritis with immune complexes in a patient with metastatic pancreatic cancer.",
+        "pubdate": "2025",
+        "url": "https://doi.org/10.3389/fmed.2025.1666859",
+        "abstract": "Gemcitabine is a widely used chemotherapeutic agent for pancreatic adenocarcinoma, that is associated with rare but serious renal complications including thrombotic microangiopathy (TMA). We report a unique case of biopsy-proven membranoproliferative glomerulonephritis (MPGN) with immune complex deposition in a woman receiving gemcitabine for metastatic pancreatic cancer. She developed new-onset hypertension, proteinuria, microscopic hematuria, and progressive renal dysfunction shortly following initiation of gemcitabine. Extensive autoimmune, complement, paraprotein, and viral serologies were unremarkable aside from a low haptoglobin. Kidney biopsy revealed an MPGN pattern with immune deposits. Gemcitabine was discontinued, and the patient was treated with corticosteroids and kidney-protective therapies targeting blood pressure and proteinuria reduction. Her proteinuria decreased significantly, and her renal function returned back to baseline. This case highlights a rare manifestation of gemcitabine-induced nephrotoxicity with immune complex MPGN, suggesting a possible novel mechanism of drug-associated glomerular injury.",
+        "summary": {
+          "目的": "本報告の目的は、ジェムシタビン投与中の膵臓癌患者に発生した、稀な免疫複合体型膜増殖性糸球体腎炎（MPGN）の症例を提示することです。これは、薬剤関連の糸球体損傷における新しいメカニズムの可能性を示唆することを意図しています。",
+          "サンプル": "対象となったのは、転移性膵臓癌の治療のためジェムシタビンを投与されていた一人の女性患者です。彼女は生検により、免疫複合体沈着を伴う膜増殖性糸球体腎炎（MPGN）と診断されました。",
+          "解析手法": "腎病変の診断のため腎生検が行われ、膜増殖性糸球体腎炎（MPGN）パターンと免疫沈着が確認されました。また、広範な自己免疫、補体、パラプロテイン、ウイルス血清学的検査が実施され、関連疾患の除外が試みられました。",
+          "結果": "患者はジェムシタビン開始後まもなく、新規発症の高血圧、蛋白尿、顕微鏡的血尿、および進行性腎機能障害を呈しました。腎生検でMPGNと診断された後、ジェムシタビンの投与を中止し、副腎皮質ステロイドと腎保護療法が行われました。その結果、蛋白尿は有意に減少し、腎機能はベースラインレベルまで回復しました。",
+          "結論": "この症例は、ジェムシタビン誘発性腎毒性における免疫複合体型MPGNという稀な病態発現を浮き彫りにしました。この所見は、薬剤によって引き起こされる糸球体損傷の、これまで知られていなかった新しいメカニズムが存在する可能性を示唆しています。"
+        }
+      },
+      {
+        "pmid": "41332849",
+        "title": "Radiologic, Pathologic, and Deep Learning Predictors of Response to Immune Checkpoint Blockade in Renal Cell Carcinoma Patients Undergoing Post-Treatment Nephrectomy.",
+        "pubdate": "2025 Nov 20",
+        "url": "https://doi.org/10.1101/2025.11.19.25340277",
+        "abstract": "Response assessment of primary kidney tumors in the consolidation cytoreductive and neoadjuvant settings offers a unique opportunity to inform postoperative adaptive treatment strategies. Yet, systematic analyses evaluating radiology, pathology, and machine learning are lacking.",
+        "summary": {
+          "目的": "本アブストラクトは、腎腫瘍における治療反応評価が、術後の適応治療戦略を形成する上で特有の機会を提供すると指摘しています。しかし、放射線学、病理学、および機械学習を統合した体系的な分析が不足している現状を課題として提示し、今後の研究の必要性を示唆しています。",
+          "サンプル": "記載なし",
+          "解析手法": "記載なし",
+          "結果": "記載なし",
+          "結論": "腎腫瘍の治療反応評価は、術後の適応治療戦略に情報を提供するための重要な機会であると結論付けられています。しかし、この評価において、放射線学、病理学、および機械学習を横断的に評価する体系的な分析が未だ不足していることが現状の課題として示されています。"
+        }
+      }
+    ]
+  },
+  {
+    "title": "Cancer proteome and biomarker discovery",
+    "keywords": [
+      "Cancer",
+      "proteome",
+      "biomarker",
+      "discovery"
+    ],
+    "search_period": "2025-12-03-2025-12-05",
+    "paper_count": 2,
+    "papers": [
+      {
+        "pmid": "41336317",
+        "title": "Integrative Analysis of Multi-Omics Data for Biomarker Discovery.",
+        "pubdate": "2025 Jul",
+        "url": "https://doi.org/10.1109/EMBC58623.2025.11254134",
+        "abstract": "The complexity of biological systems and the limitations of analyzing individual omics studies for biomarker discovery have raised the need for a holistic approach by multi-omics integration. By integrating data from multiple layers, researchers can gain insights into the entire system rather than just individual components. Also, integrative analysis can help identify molecular signatures that are more accurate in predicting disease onset, progression, and response to treatment, leading to better-targeted therapies and personalized medicine. In this paper, we explored statistical and deep learning methods for integrative analysis of metabolomics, lipidomics, peptidomics, proteomics, and glycoproteomics data acquired by LC-MS/MS analysis of serum samples from 20 hepatocellular carcinoma (HCC) cases and 20 patients with liver cirrhosis (CIRR). The goal is to identify a panel of multi-omics features that distinguish HCC cases from cirrhotic controls. A pathway analysis using these features identified biological pathways such as LXR/RXR Activation and Acute Response signaling as significantly enriched in our multi-omics datasets.",
+        "summary": {
+          "目的": "本研究の目的は、肝細胞癌 (HCC) 患者と肝硬変 (CIRR) 患者を区別できるマルチオミクス特徴のパネルを特定することです。これにより、疾患の診断、進行予測、治療反応予測に資する分子シグネチャの発見を目指しています。",
+          "サンプル": "本研究では、肝細胞癌 (HCC) 患者20例と肝硬変 (CIRR) 患者20例からそれぞれ採取された血清サンプルが使用されました。これらのサンプルは、LC-MS/MS分析によるマルチオミクスデータの取得に供されました。",
+          "解析手法": "解析手法として、メタボロミクス、リピドミクス、ペプチドミクス、プロテオミクス、および糖プロテオミクスデータの統合解析のために、統計的手法と深層学習手法が探索されました。また、LC-MS/MS分析によって取得されたこれらのデータから得られた特徴を用いてパスウェイ解析が実施されました。",
+          "結果": "パスウェイ解析の結果、LXR/RXR Activationや急性期反応シグナリングといった特定の生物学的経路が、マルチオミクスデータセットにおいて有意に濃縮されていることが同定されました。これらの経路は、HCCと肝硬変を区別する上で重要な特徴群と関連している可能性が示唆されます。",
+          "結論": "記載なし"
+        }
+      },
+      {
+        "pmid": "41332478",
+        "title": "Integrating multi-omics data: Methods and applications in human complex diseases.",
+        "pubdate": "2025 Dec",
+        "url": "https://doi.org/10.1016/j.btre.2025.e00938",
+        "abstract": "Over the past few decades, technological advancements and declining costs of high-throughput data generation have revolutionized biomedical research, enabling the collection of large-scale datasets across multiple omics layers-including genomics, transcriptomics, proteomics, metabolomics, and epigenomics. The analysis and integration of these datasets provides global insights into biological processes and holds great promise in elucidating the myriad molecular interactions associated with human diseases, particularly multifactorial ones such as cancer, cardiovascular, and neurodegenerative disorders. However, integrating multi-omics data presents significant challenges due to high dimensionality and heterogeneity. This review explores computational methods for integrating multi-omics data, with a particular focus on network-based approaches that offer a holistic view of relationships among biological components in health and disease. Furthermore, this review showcases a selection of recent, successful applications of multi-omics data integration, moving beyond theoretical methods to demonstrate their transformative potential in biomarker discovery, patient stratification, and guiding therapeutic interventions in specific human diseases.",
+        "summary": {
+          "目的": "本レビューは、マルチオミクスデータ統合のための計算手法、特に生物学的要素間の関係性を包括的に捉えるネットワークベースのアプローチを探求することを目的としています。さらに、バイオマーカーの発見、患者の層別化、特定のヒト疾患における治療介入の指針となるような、マルチオミクスデータ統合の最近の成功事例と変革的な可能性を示しています。",
+          "サンプル": "記載なし",
+          "解析手法": "記載なし",
+          "結果": "記載なし",
+          "結論": "マルチオミクスデータ統合、特にネットワークベースのアプローチは、高次元性と異質性という課題を克服し、疾患における分子相互作用への全体的な洞察を提供します。これらのアプローチは、バイオマーカーの発見、患者の層別化、および特定のヒト疾患における治療介入の指針となる上で、大きな変革的潜在能力を秘めていることが示唆されます。"
+        }
+      }
+    ]
+  }
+]

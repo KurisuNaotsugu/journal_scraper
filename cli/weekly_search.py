@@ -49,7 +49,8 @@ def summarize_abstracts(abstracts_dict: dict) -> dict[str, str]:
 
     summaries = {}
     for pmid, abstract in abstracts_dict.items():
-        if abstract == "N/A" or not abstract.strip():
+
+        if not abstract or abstract == "N/A" or not abstract.strip():
             summaries[pmid] = "No abstract exists."
             continue
 
