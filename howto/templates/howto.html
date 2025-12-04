@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}使い方ガイド{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+
+    <h2 class="header-title mb-4 text-center">使い方ガイド</h2>
+
+    <div class="card p-4 mb-4">
+        <h4 class="mb-3">Viewer（検索結果ビューワー）</h4>
+        <p>保存された PubMed 検索結果を一覧で確認できます。</p>
+        <ul>
+            <li>左のアーカイブから検索結果ファイルを選択</li>
+            <li>論文ごとのサマリーを自動生成して表示</li>
+            <li>クリックで PubMed の原文ページへアクセス</li>
+        </ul>
+    </div>
+
+    <div class="card p-4 mb-4">
+        <h4 class="mb-3">Manual Search（手動検索ツール）</h4>
+        <p>任意のキーワードや日付範囲で PubMed を検索します。</p>
+        <ul>
+            <li>複数キーワードは改行で入力</li>
+            <li>日付は YYYY/MM/DD の形式</li>
+            <li>検索結果は画面に JSON 形式で表示されます</li>
+        </ul>
+    </div>
+
+    <div class="card p-4 mb-4">
+        <h4 class="mb-3">Keyword Tracker（キーワード推移グラフ）</h4>
+        <p>指定キーワードが過去数週間でどれくらい論文数が増減したかを可視化します。</p>
+        <ul>
+            <li>複数キーワードはカンマ区切りで入力</li>
+            <li>週数を指定すると折れ線グラフを自動生成</li>
+            <li>トレンドの比較に最適</li>
+        </ul>
+    </div>
+
+</div>
+{% endblock %}

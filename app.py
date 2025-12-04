@@ -7,6 +7,7 @@ import google.genai as genai
 from viewer import viewer_bp
 from manual_search import manualsearch_bp
 from keyword_tracker import ktracker_bp
+from howto import howto_bp
 
 def create_app():
     '''Flask アプリケーションを作成し
@@ -31,6 +32,7 @@ def create_app():
     app.register_blueprint(viewer_bp, url_prefix='/viewer')
     app.register_blueprint(manualsearch_bp, url_prefix='/manualsearch')
     app.register_blueprint(ktracker_bp, url_prefix='/ktracker')
+    app.register_blueprint(howto_bp, url_prefix='/howto')
     
     return app
 
