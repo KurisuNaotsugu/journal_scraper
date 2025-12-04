@@ -1,0 +1,115 @@
+/* =========================================
+   base.css  — 全Blueprint共通スタイル
+========================================= */
+
+/* ▼ 全体 */
+body {
+    background: #f2f7f2;
+    font-family: "Noto Sans JP", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* ▼ タイトル */
+.header-title {
+    color: #1b5e20;
+    font-weight: 700;
+}
+
+/* ▼ 共通カード */
+.card {
+    border-radius: 12px;
+    border: 1px solid #b5b5b5;
+    background-color: #fff;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.15);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.card h6 {
+    margin-bottom: 0.5rem;
+}
+
+.card p {
+    margin-bottom: 0.5rem;
+}
+
+/* ▼ ボタン */
+.btn-green {
+    background-color: #2e7d32;
+    color: #fff;
+}
+.btn-green:hover {
+    background-color: #256728;
+    color: #fff;
+}
+
+/* ▼ テキスト折り返し */
+.text-prewrap {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* ▼ Summary リスト */
+.summary-list {
+    padding-left: 1.2rem;
+    list-style-type: disc;
+}
+
+.summary-list li {
+    margin: 0.15rem 0;
+}
+
+.summary-list li p {
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    line-height: 1.4;
+    font-size: 0.95rem;
+}
+
+/* ▼ サイドバー（viewer で使用） */
+.sidebar {
+    background: #f2f7f2;
+    padding: 1rem;
+    height: 100vh;
+    overflow-y: auto;
+    border-right: 2px solid #d0d0d0;
+}
+
+.sidebar .header-title {
+    text-align: center;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.archive-item {
+    padding: 6px 8px;
+    border-radius: 6px;
+    transition: background 0.2s;
+    margin-bottom: 4px;
+}
+
+.archive-item:hover {
+    background: #e0f2e0;
+}
+
+.archive-item.active {
+    background: #c8e6c9;
+    font-weight: bold;
+}
+
+/* ▼ 論文カードタイトル（中央揃え） */
+.paper-card h6 {
+    text-align: center;
+    font-weight: 700;
+}
+
+/* ▼ Chart コンテナ（ktracker） */
+.chart-container {
+    position: relative;
+    margin-top: 30px;
+}
