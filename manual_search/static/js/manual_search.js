@@ -37,7 +37,7 @@ document.getElementById("searchForm").addEventListener("submit", function(e) {
                         <h6><a href="${paper.url}" target="_blank" class="text-prewrap">${paper.title}</a></h6>
                         <p><strong>PubDate:</strong> ${paper.pubdate}</p>
                         <p><strong>Summary:</strong></p>
-                        <ul class="list-group list-group-flush summary-list">
+                        <ul class="list-group summary-list">
                             <li><p><strong>目的:</strong> ${paper.summary["目的"] || "記載なし"}</p></li>
                             <li><p><strong>結果:</strong> ${paper.summary["結果"] || "記載なし"}</p></li>
                             <li><p><strong>結論:</strong> ${paper.summary["結論"] || "記載なし"}</p></li>
