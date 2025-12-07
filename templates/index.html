@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Home | PubMed App{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+    <h1 class="text-center mb-5">【Pubmed】論文検索補助アプリ</h1>
+
+    <!-- ▼ 2x2 の最初の4つ ▼ -->
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+
+        <!-- カード1：Viewer -->
+        <div class="col">
+            <a href="{{ url_for('viewer.view_page') }}" class="text-decoration-none">
+                <div class="card shadow-sm h-100 text-center p-4">
+                    <i class="bi bi-image display-3 mb-3 text-primary"></i>
+                    <h5 class="card-title">Viewer</h5>
+                    <p class="card-text">定期自動検索結果の閲覧</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- カード2：Manual Search -->
+        <div class="col">
+            <a href="{{ url_for('manual_search.index') }}" class="text-decoration-none">
+                <div class="card shadow-sm h-100 text-center p-4">
+                    <i class="bi bi-search display-3 mb-3 text-success"></i>
+                    <h5 class="card-title">Manual Search</h5>
+                    <p class="card-text">マニュアルで論文検索</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- カード3：Keyword Tracker -->
+        <div class="col">
+            <a href="{{ url_for('ktracker.weekly_graph') }}" class="text-decoration-none">
+                <div class="card shadow-sm h-100 text-center p-4">
+                    <i class="bi bi-bar-chart-line display-3 mb-3 text-info"></i>
+                    <h5 class="card-title">Keyword Tracker</h5>
+                    <p class="card-text">週次のキーワード推移グラフ</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- カード4：Setting -->
+        <div class="col">
+            <a href="{{ url_for('settings.keywords') }}" class="text-decoration-none">
+                <div class="card shadow-sm h-100 text-center p-4">
+                    <i class="bi bi-gear display-3 mb-3 text-secondary"></i>
+                    <h5 class="card-title">Keyword Settings</h5>
+                    <p class="card-text">定期検索キーワードの設定・編集</p>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- カード5：How To Use -->
+    <div class="row mt-4">
+        <div class="col-md-6 mx-auto">
+            <a href="{{ url_for('howto.howto') }}" class="text-decoration-none">
+                <div class="card shadow-sm text-center p-4">
+                    <i class="bi bi-question-circle display-3 mb-3 text-warning"></i>
+                    <h5 class="card-title">How to Use</h5>
+                    <p class="card-text">使い方説明</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

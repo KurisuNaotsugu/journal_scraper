@@ -1,6 +1,6 @@
 # app.py
 import os
-from flask import Flask, redirect, url_for
+from flask import Flask, render_template
 import google.genai as genai
 
 # Import the Blueprint
@@ -8,6 +8,7 @@ from viewer import viewer_bp
 from manual_search import manualsearch_bp
 from keyword_tracker import ktracker_bp
 from howto import howto_bp
+from settings import settings_bp
 
 def create_app():
     '''Flask アプリケーションを作成し
@@ -26,13 +27,14 @@ def create_app():
     # トップページをビューにリダイレクト
     @app.route('/')
     def index():
-        return redirect(url_for('viewer.view_page'))
+        return render_template('index.html')
     
     # Blueprint登録
     app.register_blueprint(viewer_bp, url_prefix='/viewer')
     app.register_blueprint(manualsearch_bp, url_prefix='/manualsearch')
     app.register_blueprint(ktracker_bp, url_prefix='/ktracker')
     app.register_blueprint(howto_bp, url_prefix='/howto')
+    app.register_blueprint(settings_bp, url_prefix='/settings')
     
     return app
 
