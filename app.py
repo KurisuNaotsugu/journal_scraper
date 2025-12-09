@@ -2,6 +2,7 @@
 import os
 from flask import Flask, render_template
 import google.genai as genai
+import secrets
 
 # Import the Blueprint
 from viewer import viewer_bp
@@ -19,6 +20,7 @@ def create_app():
 
     # Flassk アプリケーションの作成
     app = Flask(__name__)
+    app.secret_key = secrets.token_hex(32)
 
     # Generate Gemini API Client
     client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))

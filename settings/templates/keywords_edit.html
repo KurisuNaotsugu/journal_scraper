@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Keyword Edit{% endblock %}
+
+{% block content %}
+<div class="container py-5" style="max-width: 900px;">
+
+    <h2 class="mb-4">
+        {% if mode == "new" %}
+            <i class="bi bi-plus-circle me-2"></i> 新規キーワード追加
+        {% else %}
+            <i class="bi bi-pencil-square me-2"></i> キーワード編集
+        {% endif %}
+    </h2>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+
+            <form method="POST">
+
+                <label class="form-label fw-bold">タイトル</label>
+                <input type="text" name="title"
+                       value="{{ item.search_title if item else '' }}"
+                       class="form-control mb-3">
+
+                <label class="form-label fw-bold">キーワード一覧（1行1つ）</label>
+                <textarea class="form-control mb-3" name="keywords"
+                          rows="10">{{ item.keywords | join('\n') if item else '' }}</textarea>
+
+                <div class="d-flex gap-2">
+                    <button class="btn btn-success">
+                        <i class="bi bi-check-circle"></i>
+                        保存
+                    </button>
+
+                    <a href="{{ url_for('settings.keywords_page') }}" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left-circle"></i>
+                        戻る
+                    </a>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}

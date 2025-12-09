@@ -1,10 +1,21 @@
 [
   {
     "search_title": "Kidney Cancer immune therapy papers",
-    "keywords": ["kidney", "cancer", "immune", "therapy"]
+    "keywords": [
+      "kidney",
+      "cancer",
+      "immune",
+      "therapy",
+      "test"
+    ]
   },
   {
     "search_title": "Cancer proteome and biomarker discovery",
-    "keywords": ["Cancer", "proteome", "biomarker", "discovery"]
+    "keywords": [
+      "Cancer",
+      "proteome",
+      "biomarker",
+      "discovery"
+    ]
   }
 ]
