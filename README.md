@@ -1,77 +1,155 @@
-# PubMed × Gemini 論文収集・要約 Web アプリ（Flask）
+# Pubmed Journal Scraper
+## Pubmed論文収集アプリ
+![home](./readme_imgs/home.png)
 
-本アプリは **Flask** を用いて構築する、研究者向けの最新論文収集ツールです。**PubMed API** で論文データを取得し、**Gemini API** を用いてアブストラクトの箇条書き要約を生成します。また、事前に登録したキーワードについて、**過去12か月のヒット数を可視化する機能**を搭載し、検索条件の最適化に役立てることを目的としています。
+本アプリは **Flask** を用いて構築する、研究者向けの論文検索ツールです。あらかじめ指定しておいたキーワードについて**PubMed API**を叩いて論文データを取得し、**Gemini API** を用いてアブストラクトの箇条書き要約を生成します。また、マニュアルでのキーワード検索や、検索キーワード選定用のヒット論文数の描画機能などを備えています。
 
----
 
-# 🧩 機能概要
-
-## 1. PubMed API を用いた最新論文収集
-- キーワード検索を使用し、直近 1 週間に発表された論文を自動取得
-- ESearch → EFetch の 2 段構成で PMIDs と論文データを効率的に収集
-- 取得データ：タイトル、著者、ジャーナル情報、出版日、アブストラクト、リンク など
-- 一時データとして JSON ファイルなどに保存し、一定期間ごとに破棄する
 
 ---
+
+# 🧩　基本機能
+
+## 1. PubMed API を用いた論文収集
+- PubmedはAPIを提供しているため、プログラムベースで論文情報を収集することが可能
+
 
 ## 2. Gemini API を使ったアブストラクト要約
-- 取得したアブストラクトを **箇条書き形式で短く要約**
-- 研究のポイントや重要点を簡潔に把握可能
-- （※アブストラクト自体も要約であるが）研究者向けの高速理解を目的とした二次要約として位置づける
+- PubMedAPIから抽出したアブストラクトを箇条書き形式で日本語要約を生成
+- 無料枠の範囲内であれば、Geminiによる要約を無料で実行することが可能
+
+## 3. 定期検索機能
+- アプリ内で設定した検索キーワードについて検索を実行するrun_weekly_search.bat(.sh)をwindowsのxxや、Maxのyyに指定した場合、search_resultフォルダに検索結果がjsonファイルとして保存され、結果をアプリ内で閲覧することができる
+
+## 4. アプリ内での検索キーワード編集
+- 定期検索を実行するキーワードはアプリ内で新規登録および編集が可能
+- 設定するキーワードについては下のサポート機能を利用して抽象度を調節する
+
+
+## 5. 検索キーワード調整サポート機能
+- 検索キーワードの抽象度が高いと、一度の検索で膨大な数の文献がヒットしてしまい、要約の閲覧が困難となり、また、GeminiAPIの無料枠も有限であることから、一週間あたりの文献数は~10程度が望ましいと考える
+- 実際の検索キーワードを設定するにあたって、**入力したキーワードの1週間ごとのヒットした論文集をグラフで表示する**
+- この機能によって適切な検索キーワード設定を可能にし、継続的な情報収集を可能にする
+
+## 6. マニュアルサーチ
+- アプリ内で手動で検索を実行することも可能
+- キーワードを設定し、検索期間を指定して実行すれば定期検索時と同様の出力がページ内に出力される
+- このページのデータは保存されないため、あくまで一時的な利用を想定してのものである
+- (アップデートでPDFファイルの出力機能実装を検討中・・)
 
 ---
 
-## 3. キーワードのヒット件数可視化（過去12か月）
-- 設定されたキーワードに対して、PubMed の ESearch を利用して **各月のヒット数**を取得
-- 月ごとの論文数をヒストグラムとして表示し、検索キーワードが多すぎないか事前に評価可能
-- API コスト削減のための重要機能
+# 使い方
+
+## 1. 環境構築
+1. リポジトリをGithubからクローンする
+
+```bash
+cd YOUR/DIRECTORY
+git clone journal_scraprer
+```
+2. GeminiAPIのキーを取得して、環境変数に`EMINI_API_KEY`として登録
+```bash
+cd YOUR/DIRECTORY
+git clone journal_scraprer
+```
+
+
+
+## 2. アプリの起動の定期検索用キーワードの設定
+1. アプリを起動 (launch_app.py)
+
+```bash
+# Poetryから実行する場合
+poetry run python app.py
+
+# シェルスクリプトの実行でも起動できる
+sh launch_app.py
+```
+
+2. `keyword_traker`で検索するキーワードの調整を実施する
+    - 一週間あたりのヒットする論文数が過剰になりすぎないように調節する
+    ![kewords_trackerページ]()
+
+
+3. `settings`で定期検索するキーワードを新規登録、または修正する
+    -  ` 検索タイトル`と`キーワード`を設定する
+    - 検索は検索タイトルごとに実行されるが、出力ファイルは一つにまとめられる
+    ![settingsページ]()
+
+4. `run_weekly_search.bat`の定期実行設定を実施する
+ - windowsであれば`run_weekly_search.bat`を、Macでは``run_weekly_search.sh`を定期実行されるように設定する
+
+## ３. 定期検索結果の閲覧
+- `Viewer`上で定期検索結果を閲覧できる
+-  過去の検索結果のアーカイブもサイドバーに示されていて、クリックで切り替えることができる
+![Viewerページ]()
+
+## ４. マニュアルでの検索実行
+-  `Manual_search`上で、定期検索以外にマニュアルでの論文検索が実施可能
+- キーワードと検索期間を指定して実行すれば、`Viewer`と同様の出力がページ下部に表示される
+![Manual_searchページ]()
+
 
 ---
 
-# 🖥 必要なページ構成
-
-## 1. 論文検索 & 結果表示ページ
-- キーワードに基づく検索実行
-- 直近1週間分の論文を一覧表示
-- アブストラクト（原文 + Gemini 要約）を表示
-- PubMed ページや DOI へのリンク
-- 必要に応じて CSV / Excel 出力も可能
-
----
-
-## 2. キーワード設定ページ
-- 検索で使用するキーワードを追加・削除
-- 過去12か月のヒット数をグラフで可視化
-- そのまま本検索ページへ反映可能
-
----
-
-# 📁 想定ディレクトリ構成（Blueprint 対応版）
+# 📁　　アプリ構成　（エンジニア向け）
 
 ```
-project/
-├── app.py                       # Flask アプリ本体（Blueprint の登録）
-├── blueprints/
-│   ├── main/                   # 論文検索・結果表示機能
-│   │   ├── __init__.py
-│   │   ├── routes.py
-│   │   └── templates/
-│   │       ├── index.html      # 検索画面
-│   │       └── results.html    # 結果画面
-│   ├── keywords/               # キーワード設定機能
-│   │   ├── __init__.py
-│   │   ├── routes.py
-│   │   └── templates/
-│   │       └── keywords.html   # キーワード設定画面
-├── services/
-│   ├── pubmed_service.py       # PubMed API 呼び出し
-│   ├── gemini_service.py       # Gemini API 呼び出し
-│   └── keyword_stats.py        # 月別ヒット数の集計
-├── static/
-│   └── images/                 # グラフ画像保存
-├── data/
-│   └── results.json            # 一時保存データ
+.
+├── app.py
+├── cli.                  # 定期検索用CLI
+│   ├── config.json.        # 最終検索日のコンフィグファイル
+│   └── weekly_search.py　  ＃ 定期検索スクリプト
+├── howto
+│   ├── __init__.py
+│   ├── routes.py
+│   └── templates
+├── keyword_tracker
+│   ├── __init__.py
+│   ├── routes.py
+│   ├── static
+│   │   ├── css
+│   │   └── js
+│   └── templates
+├── manual_search
+│   ├── __init__.py
+│   ├── routes.py
+│   ├── static
+│   │   ├── css
+│   │   └── js
+│   └── templates
+├── settings
+│   ├── __init__.py
+│   ├── routes.py
+│   ├── settings.json
+│   └── templates
+│       ├── keywords_edit.html
+│       └── keywords_list.html
+├── viewer
+│   ├── __init__.py
+│   ├── routes.py
+│   ├── static
+│   │   ├── css
+│   │   └── js
+│   └── templates
+├── static
+│   └── css
+│       └── base.css
+├── templates
+│   ├── base.html
+│   └── index.html
+├── modules
+│   ├── gemini_operator.py
+│   └── pubmed_operator.py
+├── search_result
+├── launch_app.sh
+├── run_weekly_search.bat
+├── run_weekly_search.sh
+├── poetry.lock
+├── pyproject.toml
 └── README.md
+
 ```
 
 ---
