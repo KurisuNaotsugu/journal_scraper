@@ -1,3 +1,5 @@
-readme_imgs/home.png
-search_result/2025-12-09-2025-12-10.json
+.venv/
+readme_imgs/
+search_result/
 cli/config.json
+settings/settings.json
