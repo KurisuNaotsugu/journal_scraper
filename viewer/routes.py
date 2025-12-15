@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template, url_for, current_app, request, abort
+from flask import render_template, url_for, abort, flash, redirect
+from flask import current_app, request
 from pathlib import Path
 import json
 import re
@@ -57,3 +58,18 @@ def view_page():
         archive_files=[f["name"] for f in json_files],
         current_file=target_file["name"]
     )
+
+@viewer_bp.route("/clear_archives", methods=["POST"])
+def clear_archives():
+    results_dir = Path(current_app.root_path) / "search_result"
+
+    if not results_dir.exists():
+        abort(404, description="(clear_archives)search_result directory not found.")
+
+    deleted = 0
+    for f in results_dir.glob("*.json"):
+        f.unlink()
+        deleted += 1
+
+    flash(f"Archive cleared ({deleted} files deleted).", "info")
+    return redirect(url_for("viewer.view_page"))

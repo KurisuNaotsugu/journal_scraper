@@ -19,19 +19,29 @@
                     <li>
                         {% if fn == current_file %}
                             <div class="archive-item active">
-                                📌 {{ fn }}
+                                📌 {{ fn.replace('.json', '') }}
                             </div>
                         {% else %}
                             <a href="{{ url_for('viewer.view_page') }}?file={{ fn }}">
                                 <div class="archive-item">
-                                    📄 {{ fn }}
+                                    📄 {{ fn.replace('.json', '') }}
                                 </div>
                             </a>
                         {% endif %}
                     </li>
                 {% endfor %}
-
             </ul>
+            <div class="sidebar-footer mt-4">
+                <form
+                    method="post"
+                    action="{{ url_for('viewer.clear_archives') }}"
+                    onsubmit="return confirm('すべてのアーカイブを削除します。よろしいですか？');"
+                >
+                    <button type="submit" class="btn btn-danger w-100">
+                        🗑 Clear Archives
+                    </button>
+                </form>
+            </div>
         </div>
 
         <!-- メインエリア -->
