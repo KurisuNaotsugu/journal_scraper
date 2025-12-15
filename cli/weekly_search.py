@@ -1,5 +1,5 @@
 # cli/weekly_search.py
-# Usage example: python cli/weekly_search.py --input cli/keywords.json
+# Usage example: python cli/weekly_search.py --input settings/settings.json
 
 import sys
 from pathlib import Path
@@ -15,17 +15,29 @@ sys.path.append(str(ROOT))
 import modules.gemini_operator as go
 import modules.pubmed_operator as po
 
-def search_papers(keywords: List[str], mindate: str = None, maxdate: str = None) -> tuple[dict, dict]:
-    """
-    PubMedから論文情報とアブストラクトを取得
+def search_papers(keywords: List[str], mindate: str = None, maxdate: str = None, max_results: int = 10) -> tuple[dict, dict]:
+    """PubMedから論文情報とアブストラクトを取得
+    Args:
+        keywords (List[str]): 検索キーワードのリスト
+        mindate (str, optional): 検索開始日 (YYYY/MM/DD). Defaults to None.
+        maxdate (str, optional): 検索終了日 (YYYY/MM/DD). Defaults to None.
+        max_results (int, optional): 最大取得論文数. Defaults to 10.
+    Returns:
+        tuple: esummary_list (dict), abstracts_dict (dict), mindate (str), maxdate (str)
     """
     print("(search_parpers) 論文開始...")
     mindate, maxdate = po.calculate_date_range(mindate, maxdate)
 
+    # 論文IDを検索
     pmids = po.fetch_esearch(keywords, mindate, maxdate)
     if not pmids:
         print("(search_parpers) 該当する論文はありませんでした。")
-        return {}, {}
+        return {}, {}, mindate, maxdate
+    
+    if len(pmids) > max_results:
+        print(f"(search_parpers) 論文数が指定上限({max_results})より多いため検索を終了します。")
+        return {}, {}, mindate, maxdate
+    
     print(f"(search_parpers) {len(pmids)} 件の論文がヒットしました。データ収集を開始します。")
 
     # 論文情報を取得
