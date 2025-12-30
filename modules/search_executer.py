@@ -5,12 +5,31 @@ import json
 from datetime import date
 from typing import List
 
+# DB imports
+from db.database import SessionLocal
+from db.repositories.app_state import AppStateRepository
+
+
 # Import modules
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.append(str(ROOT))
 import modules.gemini_operator as go
 import modules.pubmed_operator as po
 
+# --- Config DB操作 ---
+def load_last_search_date():
+    with SessionLocal() as session:
+        repo = AppStateRepository(session)
+        state = repo.get_or_create()
+        return state.last_search_date
+
+def save_last_search_date(new_date: str):
+    with SessionLocal() as session:
+        repo = AppStateRepository(session)
+        repo.update_last_search_date(new_date)
+        session.commit()
+
+# --- 論文検索と要約のメイン処理 ---
 def search_papers(keywords: List[str], mindate: str = None, maxdate: str = None, max_results: int = 10) -> tuple[dict, dict]:
     """PubMedから論文情報とアブストラクトを取得
     Args:
@@ -68,21 +87,6 @@ def summarize_abstracts(abstracts_dict: dict) -> dict[str, str]:
     print(f"(summarize_abstracts) 要約が完了しました。")
 
     return summaries
-
-# ユーティリティ関数: config.json の読み書き
-def load_config():
-    config_path = ROOT / "cli" / "config.json"
-    if not config_path.exists():
-        raise FileNotFoundError(f"config.json が見つかりません: {config_path}")
-
-    with open(config_path, "r") as f:
-        return json.load(f)
-
-
-def save_config(new_date: str):
-    config_path = ROOT / "settings" / "config.json"
-    with open(config_path, "w") as f:
-        json.dump({"last_search_date": new_date}, f, indent=2, ensure_ascii=False)
 
 def manual_search(input_json: list, mindate: str, maxdate: str):
     """Flaskからマニュアルサーチする際のメイン処理
@@ -151,8 +155,7 @@ def run_weekly_search(input_path: str, mindate: str, maxdate: str):
     
     # 検索期間処理
     if mindate is None:
-        config = load_config()
-        mindate = config["last_search_date"]
+        mindate = load_last_search_date()
     else:
         mindate = mindate
 
@@ -185,5 +188,5 @@ def run_weekly_search(input_path: str, mindate: str, maxdate: str):
     print(f"Result saved:{output_path}")
 
     # --- config更新 ---
-    save_config(new_date=maxdate) 
-    print(f"\nUpdated last_search_date to {maxdate} in config.json")
+    save_last_search_date(maxdate) # 検索日更新
+    print(f"\nUpdated last_search_date to {maxdate} in database.")

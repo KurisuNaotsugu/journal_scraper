@@ -11,7 +11,7 @@ class AppStateRepository:
     def get_or_create(self):
         state = self.get()
         if not state:
-            state = AppState(last_search_date="")
+            state = AppState(last_search_date="2025/12/01")
             self.session.add(state)
         return state
 

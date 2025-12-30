@@ -1,11 +1,12 @@
 # cli/weekly_search.py
 # Usage example: python cli/weekly_search.py --input settings/settings.json
 
+# Standard library imports
 import sys
 import argparse
 from pathlib import Path
 
-# Import modules
+# Modules import
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.append(str(ROOT))
 import modules.search_executer as se
