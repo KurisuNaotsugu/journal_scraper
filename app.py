@@ -5,11 +5,11 @@ import google.genai as genai
 import secrets
 
 # Import the Blueprint
-from viewer import viewer_bp
-from manual_search import manualsearch_bp
-from keyword_tracker import ktracker_bp
-from howto import howto_bp
-from settings import settings_bp
+from blueprints.viewer import viewer_bp
+from blueprints.manual_search import manualsearch_bp
+from blueprints.keyword_tracker import ktracker_bp
+from blueprints.howto import howto_bp
+from blueprints.settings import settings_bp
 
 def create_app():
     '''Flask アプリケーションを作成し
