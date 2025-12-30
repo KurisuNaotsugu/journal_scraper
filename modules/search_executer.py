@@ -8,7 +8,7 @@ from typing import List
 # DB imports
 from db.database import SessionLocal
 from db.repositories.app_state import AppStateRepository
-
+from db.repositories.search_config import SearchConfigRepository
 
 # Import modules
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,6 +17,7 @@ import modules.gemini_operator as go
 import modules.pubmed_operator as po
 
 # --- Config DB操作 ---
+
 def load_last_search_date():
     with SessionLocal() as session:
         repo = AppStateRepository(session)
@@ -29,7 +30,23 @@ def save_last_search_date(new_date: str):
         repo.update_last_search_date(new_date)
         session.commit()
 
+def load_search_input_from_config():
+    """
+    SearchConfig と KeywordConfig から manual_search に渡せる形式で取得
+    """
+    with SessionLocal() as session:
+        repo = SearchConfigRepository(session)
+        results = []
+        for cfg in repo.find_all():
+            keywords = [k.keyword for k in cfg.keywords if k.enabled]
+            results.append({
+                "search_title": cfg.title,
+                "keywords": keywords
+            })
+        return results
+
 # --- 論文検索と要約のメイン処理 ---
+
 def search_papers(keywords: List[str], mindate: str = None, maxdate: str = None, max_results: int = 30) -> tuple[dict, dict]:
     """PubMedから論文情報とアブストラクトを取得
     Args:
@@ -107,6 +124,7 @@ def manual_search(input_json: list, mindate: str, maxdate: str):
         if not keywords:
             results.append({"error": f"{search_title}: keywords がありません。"})
             continue
+        print(f"\n(manual_search) '{search_title}' の検索を開始します(キーワード: {keywords})")
         
         # 論文検索
         esummary_list, abstracts_dict, mindate, maxdate = search_papers(keywords, mindate, maxdate)
@@ -142,35 +160,22 @@ def manual_search(input_json: list, mindate: str, maxdate: str):
         print(f"(manual_search) '{search_title}' の処理が完了しました。")
     return results
 
-def run_weekly_search(input_path: str, mindate: str, maxdate: str):
+def run_weekly_search(mindate: str, maxdate: str):
     """CLIエントリーポイント
     """
-    # 引数取得
-    input_path = Path(input_path)
-
-    # 入力ファイル存在チェック
-    if not input_path.exists():
-        print(f"[ERROR] 入力ファイルが存在しません: {input_path}")
-        return
-    
     # 検索期間処理
     if mindate is None:
         mindate = load_last_search_date()
-    else:
-        mindate = mindate
-
     maxdate = maxdate or date.today().strftime("%Y/%m/%d")
-    print(f"\n>>> 検索期間: {mindate} ～ {maxdate}")
 
-    # キーワード読み込み 
-    with open(input_path, "r") as f:
-        metas = json.load(f)
-    if not isinstance(metas, list):
-        print("[ERROR] JSONは配列形式で複数検索を指定してください。")
+    # 検索設定取得
+    input_json = load_search_input_from_config()
+    if not input_json:
+        print("[ERROR] 検索設定が存在しません。DBにSearchConfigを追加してください。")
         return
 
     #--- 検索と要約の実行 ---
-    results = manual_search(metas, mindate, maxdate)
+    results = manual_search(input_json, mindate, maxdate)
 
     if not results:
         print("検索結果がありませんでした。")

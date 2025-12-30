@@ -16,13 +16,11 @@ def main():
     """CLIエントリーポイント
     """
     parser = argparse.ArgumentParser(description="PubMed search and summarize tool")
-    parser.add_argument("--input", type=str, default="keywords.json", help="入力キーワードファイル（JSON）")
     parser.add_argument("--mindate", type=str, default=None, help="検索開始日 (YYYY/MM/DD)")
     parser.add_argument("--maxdate", type=str, default=None, help="検索終了日 (YYYY/MM/DD)")
     args = parser.parse_args()
     
     se.run_weekly_search(
-        input_path=args.input,
         mindate=args.mindate,
         maxdate=args.maxdate,
     )
