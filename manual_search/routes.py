@@ -1,5 +1,11 @@
 from flask import render_template, request, jsonify
-from cli.weekly_search import manual_search
+import sys
+from pathlib import Path
+
+# Import modules
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.append(str(ROOT))
+import modules.search_executer as se
 
 from . import manualsearch_bp  
 
@@ -19,7 +25,7 @@ def run():
         input_json = [{"search_title": "Manual Search", "keywords": keywords}]
 
         # マニュアルサーチ実行
-        results = manual_search(input_json, mindate, maxdate)
+        results = se.manual_search(input_json, mindate, maxdate)
 
         return jsonify({"status": "success", "results": results})
 
