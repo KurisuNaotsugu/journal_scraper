@@ -64,7 +64,6 @@ search_result_keywords = Table(
     Column("keyword_id", ForeignKey("keywords.id")),
 )
 
-
 class Paper(Base):
     __tablename__ = "papers"
 
