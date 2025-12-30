@@ -143,8 +143,7 @@ def manual_search(input_json: list, mindate: str, maxdate: str):
     return results
 
 def main():
-    """メイン関数
-    
+    """CLIエントリーポイント
     """
     parser = argparse.ArgumentParser(description="PubMed search and summarize tool")
     parser.add_argument("--input", type=str, default="keywords.json", help="入力キーワードファイル（JSON）")
@@ -154,86 +153,48 @@ def main():
     
     # 引数取得
     input_path = Path(args.input)
-    mindate = args.mindate
-    maxdate = args.maxdate
 
     # 入力ファイル存在チェック
     if not input_path.exists():
         print(f"[ERROR] 入力ファイルが存在しません: {input_path}")
         return
     
-    # 検索期間の入力値がない時の処理
-    if mindate is None:
+    # 検索期間処理
+    if args.mindate is None:
         config = load_config()
         mindate = config["last_search_date"]
-    if maxdate is None:
-        maxdate = date.today().strftime("%Y/%m/%d")
+    else:
+        mindate = args.mindate
 
+    maxdate = args.maxdate or date.today().strftime("%Y/%m/%d")
     print(f"\n>>> 検索期間: {mindate} ～ {maxdate}")
 
-    # キーワードJSON 読み込み 
+    # キーワード読み込み 
     with open(input_path, "r") as f:
         metas = json.load(f)
     if not isinstance(metas, list):
         print("[ERROR] JSONは配列形式で複数検索を指定してください。")
         return
 
-    #--- 各キーワードセットで検索と要約を実行 ----------------------------------------------------------------
-    results = []
-    for meta in metas:
-        search_title = meta.get("search_title", "Untitled search") 
-        keywords = meta.get("keywords", [])
-        if not keywords:
-            print(f"[WARNING] {search_title} に keywords がありません。スキップします。")
-            continue
+    #--- 検索と要約の実行 ---
+    results = manual_search(metas, mindate, maxdate)
 
-        print(f"\n=== {search_title} ===")
-        print(f"キーワード: {keywords}")
-
-        # 論文検索
-        esummary_list, abstracts_dict, mindate, maxdate = search_papers(keywords, mindate, maxdate)
-        if not esummary_list:
-            continue
-
-        # 要約生成
-        summaries = summarize_abstracts(abstracts_dict)
-
-        # 検索期間文字列
-        search_period = str(f"{mindate}-{maxdate}").replace("/", "-")
-
-        # 出力データ構築
-        output_data = {
-            "title": search_title,
-            "keywords": keywords,
-            "search_period": search_period,
-            "paper_count": len(esummary_list),
-            "papers": []
-        }
-        # 論文情報の登録
-        for esummary in esummary_list:
-            pmid = esummary["pmid"]
-            output_data["papers"].append({
-                "pmid": pmid,
-                "title": esummary["Title"],
-                "pubdate": esummary["pubdate"],
-                "url": esummary["URL"],
-                "abstract": abstracts_dict.get(pmid),
-                "summary": summaries.get(pmid)
-            })
-        results.append(output_data)
+    if not results:
+        print("検索結果がありませんでした。")
+        return
         
-    # 出力ディレクトリ作成
+    # 出力
     output_dir = Path("search_result")
     output_dir.mkdir(parents=True, exist_ok=True)
-    filename = f"{search_period}.json"
-    output_path = output_dir / filename
+    search_period = f"{mindate}-{maxdate}".replace("/", "-")
+    output_path = output_dir / f"{search_period}.json"
 
-    # ---- JSON 保存 ----
+    # --- JSON 保存 ---
     with open(output_path, "w") as f:
         json.dump(results, f, indent=2, ensure_ascii=False)
-    print(f"Result saved!")
+    print(f"Result saved:{output_path}")
 
-    # 検索終了後、config.json の last_search_date を更新
+    # --- config更新 ---
     save_config(new_date=maxdate) 
     print(f"\nUpdated last_search_date to {maxdate} in config.json")
 
