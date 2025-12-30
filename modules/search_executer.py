@@ -30,7 +30,7 @@ def save_last_search_date(new_date: str):
         session.commit()
 
 # --- 論文検索と要約のメイン処理 ---
-def search_papers(keywords: List[str], mindate: str = None, maxdate: str = None, max_results: int = 10) -> tuple[dict, dict]:
+def search_papers(keywords: List[str], mindate: str = None, maxdate: str = None, max_results: int = 30) -> tuple[dict, dict]:
     """PubMedから論文情報とアブストラクトを取得
     Args:
         keywords (List[str]): 検索キーワードのリスト

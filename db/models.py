@@ -3,6 +3,18 @@ from sqlalchemy.orm import relationship
 from db.database import Base
 
 # -- Config Models --ーーーーーーーーーーーーーーーーーーーーーーー
+class SearchConfig(Base):
+    __tablename__ = "search_configs"
+
+    id = Column(Integer, primary_key=True)
+    title = Column(String(255), nullable=False)  # 検索タイトル
+
+    keywords = relationship(
+        "KeywordConfig",
+        secondary="search_config_keywords",
+        back_populates="search_configs"
+    )
+
 class KeywordConfig(Base):
     """論文検索キーワード設定モデル
     """
@@ -11,6 +23,18 @@ class KeywordConfig(Base):
     id = Column(Integer, primary_key=True)
     keyword = Column(String, unique=True, nullable=False)
     enabled = Column(Integer, default=1)
+    search_configs = relationship(
+        "SearchConfig",
+        secondary="search_config_keywords",
+        back_populates="keywords"
+    )
+
+search_config_keywords = Table(
+    "search_config_keywords",
+    Base.metadata,
+    Column("search_config_id", ForeignKey("search_configs.id")),
+    Column("keyword_config_id", ForeignKey("keyword_configs.id"))
+)
 
 class AppState(Base):
     """
