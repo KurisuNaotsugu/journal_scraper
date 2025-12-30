@@ -9,7 +9,7 @@ class Base(DeclarativeBase):
 
 # Engine :DB接続設定
 ENGINE = create_engine(
-    "sqlite:///app.db",
+    "sqlite:///journal_scraper.db",
     future=True,
     echo=False,   # デバッグしたいなら True
 )
