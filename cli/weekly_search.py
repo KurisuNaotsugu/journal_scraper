@@ -26,6 +26,5 @@ def main():
         maxdate=args.maxdate,
     )
 
-
 if __name__ == "__main__":
     main()

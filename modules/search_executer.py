@@ -80,7 +80,7 @@ def load_config():
 
 
 def save_config(new_date: str):
-    config_path = ROOT / "cli" / "config.json"
+    config_path = ROOT / "settings" / "config.json"
     with open(config_path, "w") as f:
         json.dump({"last_search_date": new_date}, f, indent=2, ensure_ascii=False)
 
