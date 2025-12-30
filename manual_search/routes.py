@@ -1,5 +1,4 @@
-from flask import Blueprint, render_template, request, jsonify
-from modules.pubmed_operator import fetch_weekly_counts
+from flask import render_template, request, jsonify
 from cli.weekly_search import manual_search
 
 from . import manualsearch_bp  
@@ -17,14 +16,11 @@ def run():
 
         # キーワードを改行区切りで JSON 用の形式に変換
         keywords = [kw.strip() for kw in keywords_text.split("\n") if kw.strip()]
+        input_json = [{"search_title": "Manual Search", "keywords": keywords}]
 
-        input_json = [{
-            "search_title": "Manual Search",
-            "keywords": keywords
-        }]
-
+        # マニュアルサーチ実行
         results = manual_search(input_json, mindate, maxdate)
-        #print(results)
+
         return jsonify({"status": "success", "results": results})
 
     except Exception as e:
