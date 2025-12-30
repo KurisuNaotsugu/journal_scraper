@@ -1,15 +1,11 @@
-# cli/weekly_search.py
-# Usage example: python cli/weekly_search.py --input settings/settings.json
-
 import sys
 from pathlib import Path
 import os
 import json
 from datetime import date
-import argparse
 from typing import List
 
-# プロジェクトルートのパスを追加して modules をインポート
+# Import modules
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.append(str(ROOT))
 import modules.gemini_operator as go
@@ -142,17 +138,11 @@ def manual_search(input_json: list, mindate: str, maxdate: str):
         print(f"(manual_search) '{search_title}' の処理が完了しました。")
     return results
 
-def main():
+def run_weekly_search(input_path: str, mindate: str, maxdate: str):
     """CLIエントリーポイント
     """
-    parser = argparse.ArgumentParser(description="PubMed search and summarize tool")
-    parser.add_argument("--input", type=str, default="keywords.json", help="入力キーワードファイル（JSON）")
-    parser.add_argument("--mindate", type=str, default=None, help="検索開始日 (YYYY/MM/DD)")
-    parser.add_argument("--maxdate", type=str, default=None, help="検索終了日 (YYYY/MM/DD)")
-    args = parser.parse_args()
-    
     # 引数取得
-    input_path = Path(args.input)
+    input_path = Path(input_path)
 
     # 入力ファイル存在チェック
     if not input_path.exists():
@@ -160,13 +150,13 @@ def main():
         return
     
     # 検索期間処理
-    if args.mindate is None:
+    if mindate is None:
         config = load_config()
         mindate = config["last_search_date"]
     else:
-        mindate = args.mindate
+        mindate = mindate
 
-    maxdate = args.maxdate or date.today().strftime("%Y/%m/%d")
+    maxdate = maxdate or date.today().strftime("%Y/%m/%d")
     print(f"\n>>> 検索期間: {mindate} ～ {maxdate}")
 
     # キーワード読み込み 
@@ -197,7 +187,3 @@ def main():
     # --- config更新 ---
     save_config(new_date=maxdate) 
     print(f"\nUpdated last_search_date to {maxdate} in config.json")
-
-
-if __name__ == "__main__":
-    main()
