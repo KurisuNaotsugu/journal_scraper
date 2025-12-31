@@ -29,6 +29,13 @@ class SearchConfigRepository:
     def find_by_title(self, title: str):
         return self.session.query(SearchConfig).filter_by(title=title).one_or_none()
 
+    def find_by_id(self, cfg_id: int):
+        return (
+            self.session.query(SearchConfig)
+            .filter(SearchConfig.id == cfg_id)
+            .one_or_none()
+        )
+    
     def update_keywords(self, title: str, keywords: list[str]):
         config = self.find_by_title(title)
         if not config:
@@ -44,8 +51,8 @@ class SearchConfigRepository:
         config.keywords = keyword_objs
         return config
 
-    def delete(self, title: str):
-        config = self.find_by_title(title)
+    def delete(self, cfg_id: int):
+        config = self.find_by_id(cfg_id)
         if config:
             self.session.delete(config)
         return config

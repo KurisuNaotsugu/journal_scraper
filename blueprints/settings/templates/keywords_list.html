@@ -28,14 +28,14 @@
                         <div class="d-flex gap-2">
 
                             <!-- 編集 -->
-                            <a href="{{ url_for('settings.keywords_edit', i=loop.index0) }}"
+                            <a href="{{ url_for('settings.keywords_edit', cfg_id=item.id) }}"
                                class="btn btn-sm btn-outline-success">
                                 <i class="bi bi-pencil-square"></i>
                             </a>
 
                             <!-- 削除 -->
                             <form method="POST"
-                                  action="{{ url_for('settings.keywords_delete', i=loop.index0) }}"
+                                  action="{{ url_for('settings.keywords_delete', cfg_id=item.id) }}"
                                   onsubmit="return confirm('本当に削除しますか？');">
                                 <button class="btn btn-sm btn-outline-danger">
                                     <i class="bi bi-trash"></i>
