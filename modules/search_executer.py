@@ -9,6 +9,7 @@ from typing import List
 from db.database import SessionLocal
 from db.repositories.app_state import AppStateRepository
 from db.repositories.search_config import SearchConfigRepository
+from db.repositories.search_result import SearchResultRepository
 
 # Import modules
 ROOT = Path(__file__).resolve().parents[1]
@@ -44,6 +45,20 @@ def load_search_input_from_config():
                 "keywords": keywords
             })
         return results
+    
+def save_search_results_to_db(results: list):
+    with SessionLocal() as session:
+        repo = SearchResultRepository(session)
+
+        for r in results:
+            repo.create_search_result(
+                title=r["title"],
+                search_period=r["search_period"],
+                keywords=r["keywords"],
+                papers=r["papers"],
+            )
+
+        session.commit()
 
 # --- 論文検索と要約のメイン処理 ---
 
@@ -176,22 +191,14 @@ def run_weekly_search(mindate: str, maxdate: str):
 
     #--- 検索と要約の実行 ---
     results = manual_search(input_json, mindate, maxdate)
-
     if not results:
         print("検索結果がありませんでした。")
         return
-        
-    # 出力
-    output_dir = Path("search_result")
-    output_dir.mkdir(parents=True, exist_ok=True)
-    search_period = f"{mindate}-{maxdate}".replace("/", "-")
-    output_path = output_dir / f"{search_period}.json"
-
-    # --- JSON 保存 ---
-    with open(output_path, "w") as f:
-        json.dump(results, f, indent=2, ensure_ascii=False)
-    print(f"Result saved:{output_path}")
+    
+    # --- 結果保存 ---
+    save_search_results_to_db(results)
+    print("Search results saved to database.")
 
     # --- config更新 ---
-    save_last_search_date(maxdate) # 検索日更新
+    save_last_search_date(maxdate)
     print(f"\nUpdated last_search_date to {maxdate} in database.")
