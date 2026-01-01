@@ -20,20 +20,23 @@ import modules.pubmed_operator as po
 # --- Config DB操作 ---
 
 def load_last_search_date():
+    """前回検索実行日をDBから取得
+    """
     with SessionLocal() as session:
         repo = AppStateRepository(session)
         state = repo.get_or_create()
         return state.last_search_date
 
 def save_last_search_date(new_date: str):
+    """検索実行日を更新
+    """
     with SessionLocal() as session:
         repo = AppStateRepository(session)
         repo.update_last_search_date(new_date)
         session.commit()
 
-def load_search_input_from_config():
-    """
-    SearchConfig と KeywordConfig から manual_search に渡せる形式で取得
+def load_search_setting():
+    """SearchConfig と KeywordConfig から検索メタデータを取得
     """
     with SessionLocal() as session:
         repo = SearchConfigRepository(session)
@@ -47,6 +50,8 @@ def load_search_input_from_config():
         return results
     
 def save_search_results_to_db(results: list):
+    """検索結果をDBに保存
+    """
     with SessionLocal() as session:
         repo = SearchResultRepository(session)
 
@@ -100,8 +105,7 @@ def search_papers(keywords: List[str], mindate: str = None, maxdate: str = None,
 
 
 def summarize_abstracts(abstracts_dict: dict) -> dict[str, str]:
-    """
-    Gemini を使ってアブストラクトを要約
+    """Gemini を使ってアブストラクトを要約
     """
     print(f"(summarize_abstracts) Geminiによる要約を開始します...")
     gemini_client = go.genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
@@ -144,7 +148,13 @@ def manual_search(input_json: list, mindate: str, maxdate: str):
         # 論文検索
         esummary_list, abstracts_dict, mindate, maxdate = search_papers(keywords, mindate, maxdate)
         if not esummary_list:
-            results.append({"title": search_title, "papers": []})
+            results.append({
+                "title": search_title,
+                "keywords": keywords,
+                "search_period": f"{mindate}-{maxdate}".replace("/", "-"),
+                "paper_count": 0,
+                "papers": []
+            })
             continue
 
         # 要約生成
@@ -184,7 +194,7 @@ def run_weekly_search(mindate: str, maxdate: str):
     maxdate = maxdate or date.today().strftime("%Y/%m/%d")
 
     # 検索設定取得
-    input_json = load_search_input_from_config()
+    input_json = load_search_setting()
     if not input_json:
         print("[ERROR] 検索設定が存在しません。DBにSearchConfigを追加してください。")
         return
