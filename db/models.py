@@ -32,8 +32,8 @@ class KeywordConfig(Base):
 search_config_keywords = Table(
     "search_config_keywords",
     Base.metadata,
-    Column("search_config_id", ForeignKey("search_configs.id")),
-    Column("keyword_config_id", ForeignKey("keyword_configs.id"))
+    Column("search_config_id", ForeignKey("search_configs.id"), primary_key=True,),
+    Column("keyword_config_id",ForeignKey("keyword_configs.id"), primary_key=True,),
 )
 
 class AppState(Base):
@@ -84,8 +84,8 @@ class Keyword(Base):
 search_result_keywords = Table(
     "search_result_keywords",
     Base.metadata,
-    Column("search_result_id", ForeignKey("search_results.id")),
-    Column("keyword_id", ForeignKey("keywords.id")),
+    Column("search_result_id", ForeignKey("search_results.id"), primary_key=True),
+    Column("keyword_id", ForeignKey("keywords.id"), primary_key=True),
 )
 
 class Paper(Base):
