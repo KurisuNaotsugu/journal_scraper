@@ -44,11 +44,6 @@ body {
     color: #fff;
 }
 
-/* ▼ テキスト折り返し */
-.text-prewrap {
-    white-space: pre-wrap;
-    word-break: break-word;
-}
 
 /* ▼ Summary リスト */
 .summary-list {
@@ -102,10 +97,26 @@ body {
     font-weight: bold;
 }
 
-/* ▼ 論文カードタイトル（中央揃え） */
-.paper-card h6 {
-    text-align: center;
-    font-weight: 700;
+/* 論文カード全体 */
+.paper-card {
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+/* タイトル・本文・リンク */
+.paper-card h6,
+.paper-card p,
+.paper-card a {
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+/* Abstract 専用 */
+.abstract-text {
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    line-height: 1.5;
 }
 
 /* ▼ Chart コンテナ（ktracker） */

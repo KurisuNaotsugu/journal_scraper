@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const papersContainer = document.createElement("div");
 
-    // ===== 論文カード一覧 =====
+    // ===== 論文カード =====
     results.papers.forEach((paper, index) => {
         const paperCard = document.createElement("div");
         paperCard.classList.add("card", "paper-card", "mb-3", "p-3");
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         paperCard.innerHTML = `
             <h6 class="paper-title">
-                ${index + 1}. ${safe(paper.title)}
+                ${safe(paper.title)}
             </h6>
 
             <p>
@@ -57,14 +57,19 @@ document.addEventListener("DOMContentLoaded", () => {
                     <strong>Purpose:</strong> ${safe(paper.summary?.purpose)}
                 </li>
                 <li class="list-group-item">
-                    <strong>Method:</strong> ${safe(paper.summary?.method)}
-                </li>
-                <li class="list-group-item">
                     <strong>Result:</strong> ${safe(paper.summary?.result)}
                 </li>
                 <li class="list-group-item">
                     <strong>Conclusion:</strong> ${safe(paper.summary?.conclusion)}
                 </li>
+                <li class="list-group-item">
+                    <strong>Sample:</strong> ${safe(paper.summary?.sample)}
+                </li>
+                <li class="list-group-item">
+                    <strong>Method:</strong> ${safe(paper.summary?.method)}
+                </li>
+                
+                
             </ul>
         `;
 
