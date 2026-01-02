@@ -6,70 +6,93 @@ import re
 from datetime import datetime
 
 from . import viewer_bp
+from db.models import SearchResult
+from db.database import SessionLocal
+from db.repositories.search_result import SearchResultRepository
+
+def build_results_dict(result):
+    return {
+        "title": result.title,
+        "search_period": result.search_period,
+        "paper_count": len(result.papers),  # ← これを追加
+        "papers": [
+            {
+                "pmid": p.pmid,
+                "title": p.title,
+                "abstract": p.abstract,
+                "summary": {
+                    "purpose": p.summary.purpose if p.summary else None,
+                    "method": p.summary.method if p.summary else None,
+                    "result": p.summary.result if p.summary else None,
+                    "conclusion": p.summary.conclusion if p.summary else None,
+                },
+            }
+            for p in result.papers
+        ]
+    }
 
 @viewer_bp.route('/')
 def view_page():
-    results_dir = Path(current_app.root_path) / "search_result"
+    with SessionLocal() as session:
+        repo = SearchResultRepository(session)
+        archives = repo.find_all()
 
-    # --- ファイル一覧取得（YYYY-MM-DD-YYYY-MM-DD.json形式のみ） ---
-    pattern = re.compile(r"(\d{4}-\d{2}-\d{2})-(\d{4}-\d{2}-\d{2})\.json$")
-    json_files = []
+        if not archives:
+            return "No search results found.", 404
 
-    for f in results_dir.glob("*.json"):
-        match = pattern.search(f.name)
-        if match:
-            start_date = match.group(1)
-            end_date = match.group(2)
-            json_files.append({
-                "path": f,
-                "name": f.name,
-                "start_date": start_date,
-                "end_date": end_date,
-                "end_dt": datetime.strptime(end_date, "%Y-%m-%d")
-            })
+        current = archives[0]
+        results_dict = build_results_dict(current)
 
-    if not json_files:
-        return "No result files found.", 404
+        print("\n===== DEBUG view_page =====")
+        print(f"archives count: {len(archives)}")
+        print("archives ids:", [a.id for a in archives])
 
-    # --- URL パラメータ file=xxx.json を取得 ---
-    requested_file = request.args.get("file")
+        if not archives:
+            print("No archives found")
+            return "No search results found.", 404
 
-    if requested_file:
-        # 指定ファイルが存在するかチェック
-        matched = next((f for f in json_files if f["name"] == requested_file), None)
-        if not matched:
-            return abort(404, description="Requested file not found.")
-        target_file = matched
-    else:
-        # file がない → 最新のファイルを使用
-        target_file = max(json_files, key=lambda x: x["end_dt"])
+        current = archives[0]
+        print("\n--- current(SearchResult model) ---")
+        print(current)
 
-    # --- JSON内容を読み込み ---
-    try:
-        with open(target_file["path"], "r", encoding="utf-8") as f:
-            results = json.load(f)
-    except Exception:
-        return abort(500, description="Failed to read JSON file.")
+        results_dict = build_results_dict(current)
 
-    # --- テンプレートへ渡す ---
+        print("\n--- results_dict (passed to template) ---")
+        print(results_dict)
+        print("===== END DEBUG =====\n")
+
     return render_template(
         "view_results.html",
-        results=results,
-        archive_files=[f["name"] for f in json_files],
-        current_file=target_file["name"]
+        results=results_dict,   # ← 常に dict
+        archives=archives,
+        current_id=current.id,
     )
+
+
+@viewer_bp.route("/<int:result_id>")
+def view_archive(result_id):
+    with SessionLocal() as session:
+        repo = SearchResultRepository(session)
+        result = repo.find_by_id(result_id)
+        if not result:
+            abort(404)
+
+        archives = repo.find_all()
+        results_dict = build_results_dict(result)
+
+    return render_template(
+        "view_results.html",
+        results=results_dict,   # ← ここも dict
+        archives=archives,
+        current_id=result.id,
+    )
+
 
 @viewer_bp.route("/clear_archives", methods=["POST"])
 def clear_archives():
-    results_dir = Path(current_app.root_path) / "search_result"
+    with SessionLocal() as session:
+        session.query(SearchResult).delete()
+        session.commit()
 
-    if not results_dir.exists():
-        abort(404, description="(clear_archives)search_result directory not found.")
-
-    deleted = 0
-    for f in results_dir.glob("*.json"):
-        f.unlink()
-        deleted += 1
-
-    flash(f"Archive cleared ({deleted} files deleted).", "info")
+    flash("All search results deleted.", "warning")
     return redirect(url_for("viewer.view_page"))

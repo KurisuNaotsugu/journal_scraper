@@ -10,10 +10,10 @@ class PaperRepository:
         self.session.add(paper)
         return paper
 
-    def find_by_pmid(self, pmid):
+    def find_by_id(self, paper_id: int):
         return (
             self.session.query(Paper)
-            .filter_by(pmid=pmid)
+            .filter_by(id=paper_id)
             .one_or_none()
         )
 

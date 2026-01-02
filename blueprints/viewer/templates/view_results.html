@@ -15,27 +15,32 @@
             <h4 class="header-title">Archives</h4>
             <ul class="list-unstyled">
 
-                {% for fn in archive_files %}
+                {% for r in archives %}
                     <li>
-                        {% if fn == current_file %}
+                        {% if r.id == current_id %}
                             <div class="archive-item active">
-                                📌 {{ fn.replace('.json', '') }}
+                                📌 {{ r.title }}<br>
+                                <small>{{ r.search_period }}</small>
                             </div>
                         {% else %}
-                            <a href="{{ url_for('viewer.view_page') }}?file={{ fn }}">
+                            <a href="{{ url_for('viewer.view_archive', result_id=r.id) }}">
                                 <div class="archive-item">
-                                    📄 {{ fn.replace('.json', '') }}
+                                    📄 {{ r.title }}<br>
+                                    <small>{{ r.search_period }}</small>
                                 </div>
                             </a>
                         {% endif %}
                     </li>
                 {% endfor %}
+
             </ul>
+
+            <!-- （任意）全削除 -->
             <div class="sidebar-footer mt-4">
                 <form
                     method="post"
                     action="{{ url_for('viewer.clear_archives') }}"
-                    onsubmit="return confirm('すべてのアーカイブを削除します。よろしいですか？');"
+                    onsubmit="return confirm('すべての検索結果を削除します。よろしいですか？');"
                 >
                     <button type="submit" class="btn btn-danger w-100">
                         🗑 Clear Archives
@@ -46,7 +51,14 @@
 
         <!-- メインエリア -->
         <div class="col-9">
-            <h2 class="my-4 header-title">Review Paper Publication</h2>
+            <h2 class="my-4 header-title">
+                {{ results.title }}
+            </h2>
+            <p class="text-muted">
+                Search period: {{ results.search_period }} /
+                Papers: {{ results.paper_count }}
+            </p>
+
             <div id="resultsArea"></div>
         </div>
 

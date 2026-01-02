@@ -1,47 +1,76 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // HTML に埋め込んだ JSON を取得
-    const jsonText = document.getElementById("resultsData").textContent;
-    const results = JSON.parse(jsonText);
+    // ===== Flask から埋め込まれた JSON を取得 =====
+    const jsonText = document.getElementById("resultsData")?.textContent;
+    if (!jsonText) {
+        console.error("resultsData not found");
+        return;
+    }
 
+    const results = JSON.parse(jsonText);
     const resultsArea = document.getElementById("resultsArea");
 
-    // 安全に値を取得するヘルパー
-    const safe = (value) => value || "記載なし";
+    const safe = (v) => (v && v.trim ? v.trim() : v) || "記載なし";
 
-    results.forEach(result => {
-        // ===== 検索結果カード =====
-        const searchCard = document.createElement("div");
-        searchCard.classList.add("card", "search-card", "mb-4", "p-3");
+    // ===== 検索結果（1件）カード =====
+    const searchCard = document.createElement("div");
+    searchCard.classList.add("card", "search-card", "mb-4", "p-3");
 
-        searchCard.innerHTML = `<h4 class="search-title">${result.title.trim()}</h4>
-<p><strong>Keywords:</strong> ${result.keywords.join(", ")}</p>
-<p><strong>Search Period:</strong> ${result.search_period}</p>
-<p><strong>Paper Count:</strong> ${result.paper_count}</p>`;
+    searchCard.innerHTML = `
+        <h4 class="search-title">${safe(results.title)}</h4>
+        <p class="text-muted">
+            Search period: ${safe(results.search_period)} /
+            Papers: ${results.paper_count ?? results.papers.length}
+        </p>
+    `;
 
-        const papersContainer = document.createElement("div");
+    const papersContainer = document.createElement("div");
 
-        // ===== 論文カード一覧 =====
-        result.papers.forEach(paper => {
-            const paperCard = document.createElement("div");
-            paperCard.classList.add("card", "paper-card", "mb-3", "p-3");
+    // ===== 論文カード一覧 =====
+    results.papers.forEach((paper, index) => {
+        const paperCard = document.createElement("div");
+        paperCard.classList.add("card", "paper-card", "mb-3", "p-3");
 
-            paperCard.innerHTML = `<h6 class="paper-title">
-<a href="${paper.url}" target="_blank" class="text-prewrap paper-title-link">${paper.title.trim()}</a>
-</h6>
-<p><strong>PubDate:</strong> ${safe(paper.pubdate)}</p>
-<p><strong>Summary:</strong></p>
-<ul class="list-group summary-list">
-<li><p><strong>目的:</strong> ${safe(paper.summary["目的"])}</p></li>
-<li><p><strong>結果:</strong> ${safe(paper.summary["結果"])}</p></li>
-<li><p><strong>結論:</strong> ${safe(paper.summary["結論"])}</p></li>
-<li><p><strong>サンプル:</strong> ${safe(paper.summary["サンプル"])}</p></li>
-<li><p><strong>解析手法:</strong> ${safe(paper.summary["解析手法"])}</p></li>
-</ul>`;
+        const pubmedUrl = `https://pubmed.ncbi.nlm.nih.gov/${paper.pmid}/`;
 
-            papersContainer.appendChild(paperCard);
-        });
+        paperCard.innerHTML = `
+            <h6 class="paper-title">
+                ${index + 1}. ${safe(paper.title)}
+            </h6>
 
-        searchCard.appendChild(papersContainer);
-        resultsArea.appendChild(searchCard);
+            <p>
+                <strong>PMID:</strong>
+                <a href="${pubmedUrl}" target="_blank" rel="noopener noreferrer">
+                    ${safe(paper.pmid)}
+                </a>
+            </p>
+
+            <details class="mb-3">
+                <summary><strong>Abstract</strong></summary>
+                <p class="text-prewrap mt-2">
+                    ${safe(paper.abstract)}
+                </p>
+            </details>
+
+            <p><strong>Summary:</strong></p>
+            <ul class="list-group summary-list">
+                <li class="list-group-item">
+                    <strong>Purpose:</strong> ${safe(paper.summary?.purpose)}
+                </li>
+                <li class="list-group-item">
+                    <strong>Method:</strong> ${safe(paper.summary?.method)}
+                </li>
+                <li class="list-group-item">
+                    <strong>Result:</strong> ${safe(paper.summary?.result)}
+                </li>
+                <li class="list-group-item">
+                    <strong>Conclusion:</strong> ${safe(paper.summary?.conclusion)}
+                </li>
+            </ul>
+        `;
+
+        papersContainer.appendChild(paperCard);
     });
+
+    searchCard.appendChild(papersContainer);
+    resultsArea.appendChild(searchCard);
 });

@@ -1,5 +1,5 @@
 # cli/weekly_search.py
-# Usage example: python cli/weekly_search.py --input settings/settings.json
+# Usage example: python cli/weekly_search.py
 
 # Standard library imports
 import sys

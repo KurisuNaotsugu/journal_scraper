@@ -17,43 +17,32 @@ def normalize_summary(summary: dict) -> dict:
     return normalized
 
 class SearchResultRepository:
-
     def __init__(self, session):
         self.session = session
 
-    def create(self, title, search_period, paper_count):
-        obj = SearchResult(
-            title=title,
-            search_period=search_period,
-            paper_count=paper_count,
-        )
-        self.session.add(obj)
-        return obj
-
-    def get(self, id_):
+    def _base_query(self):
         return (
             self.session.query(SearchResult)
             .options(
+                selectinload(SearchResult.papers)
+                    .selectinload(Paper.summary),
                 selectinload(SearchResult.keywords),
-                selectinload(SearchResult.papers),
             )
-            .get(id_)
         )
 
-    def list_latest(self, limit=20):
+    def find_all(self):
         return (
-            self.session.query(SearchResult)
+            self._base_query()
             .order_by(SearchResult.id.desc())
-            .limit(limit)
             .all()
         )
 
-    def delete(self, id_):
-        obj = self.get(id_)
-        if obj:
-            self.session.delete(obj)
-        return obj
-
+    def find_by_id(self, result_id: int):
+        return (
+            self._base_query()
+            .filter(SearchResult.id == result_id)
+            .one_or_none()
+        )
     def get_or_create_keyword(self, name: str) -> Keyword:
         keyword = (
             self.session.query(Keyword)
@@ -64,7 +53,7 @@ class SearchResultRepository:
             keyword = Keyword(name=name)
             self.session.add(keyword)
         return keyword
-
+    
     def create_search_result(
         self,
         title: str,
