@@ -2,7 +2,7 @@
 from database import ENGINE, SessionLocal, Base
 from models import AppState, KeywordConfig, SearchConfig
 
-def main(init_date:str):
+def init_db(init_date:str):
     """データベースの初期化と初期データ挿入
 
     Args:

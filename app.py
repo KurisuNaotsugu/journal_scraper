@@ -3,6 +3,9 @@ import os
 from flask import Flask, render_template
 import google.genai as genai
 import secrets
+from datetime import date
+
+from db.init_db import init_db
 
 # Import the Blueprint
 from blueprints.viewer import viewer_bp
@@ -17,6 +20,12 @@ def create_app():
     # アプリケーションインスタンスの作成
     app = Flask(__name__)
     app.secret_key = secrets.token_hex(32)
+
+    # DB初期化
+
+    with app.app_context():
+        today = date.today().strftime("%Y-%m-%d")
+        init_db(init_date=today)
 
     # Generate Gemini API Client
     client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
