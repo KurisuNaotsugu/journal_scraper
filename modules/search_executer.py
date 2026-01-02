@@ -1,11 +1,13 @@
+# modules/search_executer.py
+
+# Import libraries
+import os
 import sys
 from pathlib import Path
-import os
-import json
 from datetime import date
 from typing import List
 
-# DB imports
+# Import DB repositories
 from db.database import SessionLocal
 from db.repositories.app_state import AppStateRepository
 from db.repositories.search_config import SearchConfigRepository
@@ -17,18 +19,27 @@ sys.path.append(str(ROOT))
 import modules.gemini_operator as go
 import modules.pubmed_operator as po
 
-# --- Config DB操作 ---
+
+##############################################################################################################################
+# ヘルパー関数群
+##############################################################################################################################
 
 def load_last_search_date():
-    """前回検索実行日をDBから取得
+    """DBから取得前回検索実行日を取得
+
+    Returns:
+        str: 前回検索実行日 (YYYY/MM/DD)
     """
     with SessionLocal() as session:
         repo = AppStateRepository(session)
         state = repo.get_or_create()
         return state.last_search_date
 
-def save_last_search_date(new_date: str):
-    """検索実行日を更新
+def update_search_date(new_date: str):
+    """DBに検索実行日(last_search_date)を更新
+
+    Args:
+        new_date (str): 検索実行日 (YYYY/MM/DD) 
     """
     with SessionLocal() as session:
         repo = AppStateRepository(session)
@@ -36,7 +47,7 @@ def save_last_search_date(new_date: str):
         session.commit()
 
 def load_search_setting():
-    """SearchConfig と KeywordConfig から検索メタデータを取得
+    """検索メタデータをDBから取得
     """
     with SessionLocal() as session:
         repo = SearchConfigRepository(session)
@@ -65,47 +76,62 @@ def save_search_results_to_db(results: list):
 
         session.commit()
 
-# --- 論文検索と要約のメイン処理 ---
+##############################################################################################################################
+# 論文検索と要約のメイン処理 
+##############################################################################################################################
+
+class PaperSearchError(Exception):
+    """論文検索に関する基底例外"""
+    pass
+
+class NoPaperFoundError(PaperSearchError):
+    pass
+
+class TooManyResultsError(PaperSearchError):
+    pass
 
 def search_papers(keywords: List[str], mindate: str = None, maxdate: str = None, max_results: int = 30) -> tuple[dict, dict]:
     """PubMedから論文情報とアブストラクトを取得
     Args:
         keywords (List[str]): 検索キーワードのリスト
-        mindate (str, optional): 検索開始日 (YYYY/MM/DD). Defaults to None.
-        maxdate (str, optional): 検索終了日 (YYYY/MM/DD). Defaults to None.
-        max_results (int, optional): 最大取得論文数. Defaults to 10.
+        mindate (str): 検索開始日 (YYYY/MM/DD). 
+        maxdate (str): 検索終了日 (YYYY/MM/DD). 
+        max_results (int): 最大取得論文数.
+
     Returns:
-        tuple: esummary_list (dict), abstracts_dict (dict), mindate (str), maxdate (str)
+        esummary_list (dict)
+        abstracts_dict (dict)
     """
-    print("(search_parpers) 論文開始...")
+    print("(search_parpers) 論文検索開始...")
     mindate, maxdate = po.calculate_date_range(mindate, maxdate)
 
     # 論文IDを検索
     pmids = po.fetch_esearch(keywords, mindate, maxdate)
     if not pmids:
-        print("(search_parpers) 該当する論文はありませんでした。")
-        return {}, {}, mindate, maxdate
-    
+        raise NoPaperFoundError("該当する論文はありませんでした。")
+
     if len(pmids) > max_results:
-        print(f"(search_parpers) 論文数が指定上限({max_results})より多いため検索を終了します。")
-        return {}, {}, mindate, maxdate
-    
-    print(f"(search_parpers) {len(pmids)} 件の論文がヒットしました。データ収集を開始します。")
+        raise TooManyResultsError(f"論文数が上限({max_results})を超えています: {len(pmids)} 件。検索キーワードを絞り込んで再検索してください")
 
     # 論文情報を取得
     esummary_xml = po.fetch_esummary(pmids)
     esummary_list = po.parse_esummary_xml(esummary_xml)
-    print(f"(search_parpers) {len(pmids)} 件の論文を取得しました。")
+    print(f"{len(pmids)} 件の論文情報を取得しました。")
 
     # アブストラクトを取得
     abstracts_dict = po.fetch_eFetch(pmids)
-    print(f"(search_parpers) アブストラクトを取得しました。")
+    print(f"取得した論文のアブストラクトを取得しました。")
 
-    return esummary_list, abstracts_dict, mindate, maxdate
+    return esummary_list, abstracts_dict
 
 
 def summarize_abstracts(abstracts_dict: dict) -> dict[str, str]:
     """Gemini を使ってアブストラクトを要約
+
+    Args:
+        abstracts_dict (dict): {pmid: abstract} の辞書
+    Returns:
+        dict[str, str]: {pmid: summary} の辞書
     """
     print(f"(summarize_abstracts) Geminiによる要約を開始します...")
     gemini_client = go.genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
@@ -120,15 +146,28 @@ def summarize_abstracts(abstracts_dict: dict) -> dict[str, str]:
         prompt = go.build_prompt(go.PROMPT_TEMPLATE, abstract=abstract)
         summary = go.request_gemini_json(gemini_client, prompt)
         summaries[pmid] = summary
-    print(f"(summarize_abstracts) 要約が完了しました。")
+    print(f"要約が完了しました。")
 
     return summaries
 
-def manual_search(input_json: list, mindate: str, maxdate: str):
+##############################################################################################################################
+# 論文検索と要約の実行関数
+##############################################################################################################################
+
+class NoKeywordsError(PaperSearchError):
+    pass
+
+class TooManyResultsError(PaperSearchError):
+    pass
+
+class NoSettingsError(PaperSearchError):
+    pass
+
+def manual_search(search_meta_info: list, mindate: str, maxdate: str):
     """Flaskからマニュアルサーチする際のメイン処理
 
     Args;
-        input_json (list): 検索メタデータのリスト
+        search_meta_info (list): 検索メタデータのリスト
         mindate (str): 検索開始日
         maxdate (str): 検索終了日 
 
@@ -137,32 +176,24 @@ def manual_search(input_json: list, mindate: str, maxdate: str):
     """
     print(f"(manual_search) 文献調査を開始します: 検索期間: {mindate} ～ {maxdate}")
     results = []
-    for meta in input_json:
+    for meta in search_meta_info:
+        # 検索メタデータ取得
         search_title = meta.get("search_title", "Untitled search")
         keywords = meta.get("keywords", [])
         if not keywords:
-            results.append({"error": f"{search_title}: keywords がありません。"})
-            continue
-        print(f"\n(manual_search) '{search_title}' の検索を開始します(キーワード: {keywords})")
+            raise NoKeywordsError(f"{search_title}: keywords がありません。")
+        print(f"'{search_title}' の検索を開始します(キーワード: {keywords})")
         
         # 論文検索
-        esummary_list, abstracts_dict, mindate, maxdate = search_papers(keywords, mindate, maxdate)
-        if not esummary_list:
-            results.append({
-                "title": search_title,
-                "keywords": keywords,
-                "search_period": f"{mindate}-{maxdate}".replace("/", "-"),
-                "paper_count": 0,
-                "papers": []
-            })
-            continue
+        esummary_list, abstracts_dict = search_papers(keywords, mindate, maxdate)
+        search_period = f"{mindate}-{maxdate}".replace("/", "-")
 
         # 要約生成
+        print(f"要約を生成します...")
         summaries = summarize_abstracts(abstracts_dict)
 
         # 出力データ構築
-        print(f"(manual_search) 出力データを構築します...")
-        search_period = f"{mindate}-{maxdate}".replace("/", "-")
+        print(f"出力データを構築します...")
         output_data = {
             "title": search_title,
             "keywords": keywords,
@@ -182,11 +213,18 @@ def manual_search(input_json: list, mindate: str, maxdate: str):
             })
         results.append(output_data)
 
-        print(f"(manual_search) '{search_title}' の処理が完了しました。")
+    print(f"manual_searchの処理が完了しました。")
     return results
 
 def run_weekly_search(mindate: str, maxdate: str):
     """CLIエントリーポイント
+    - 指定された検索期間に基づいてPubmed検索を実行する。
+    - 検索結果キーワードの取得および結果の保存はデータベース上に行う。
+
+    Args:
+        mindate (str): 検索開始日 (YYYY/MM/DD)
+        maxdate (str): 検索終了日 (YYYY/MM/DD) 
+    
     """
     # 検索期間処理
     if mindate is None:
@@ -194,21 +232,16 @@ def run_weekly_search(mindate: str, maxdate: str):
     maxdate = maxdate or date.today().strftime("%Y/%m/%d")
 
     # 検索設定取得
-    input_json = load_search_setting()
-    if not input_json:
-        print("[ERROR] 検索設定が存在しません。DBにSearchConfigを追加してください。")
-        return
+    search_meta_info = load_search_setting()
+    if not search_meta_info:
+        raise NoSettingsError("検索設定が存在しません。DBに検索条件を追加してください。")
 
-    #--- 検索と要約の実行 ---
-    results = manual_search(input_json, mindate, maxdate)
-    if not results:
-        print("検索結果がありませんでした。")
-        return
+    # 検索と要約の実行
+    results = manual_search(search_meta_info, mindate, maxdate)
     
-    # --- 結果保存 ---
+    # DB更新
     save_search_results_to_db(results)
     print("Search results saved to database.")
-
-    # --- config更新 ---
-    save_last_search_date(maxdate)
-    print(f"\nUpdated last_search_date to {maxdate} in database.")
+    
+    update_search_date(maxdate)
+    print(f"Updated last_search_date to {maxdate} in database.")
