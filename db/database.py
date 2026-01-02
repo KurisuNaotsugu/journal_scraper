@@ -11,9 +11,8 @@ class Base(DeclarativeBase):
 ENGINE = create_engine(
     "sqlite:///journal_scraper.db",
     future=True,
-    echo=False,   # デバッグしたいなら True
+    echo=False,
 )
-
 
 # Session :DBセッション生成
 SessionLocal = sessionmaker(
