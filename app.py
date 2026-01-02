@@ -8,17 +8,13 @@ import secrets
 from blueprints.viewer import viewer_bp
 from blueprints.manual_search import manualsearch_bp
 from blueprints.keyword_tracker import ktracker_bp
-from blueprints.howto import howto_bp
 from blueprints.settings import settings_bp
+from blueprints.howto import howto_bp
 
 def create_app():
-    '''Flask アプリケーションを作成し
+    '''Flask アプリケーションの作成'''
 
-    Returns:
-        Flask: Flask アプリケーションインスタンス
-    '''
-
-    # Flassk アプリケーションの作成
+    # アプリケーションインスタンスの作成
     app = Flask(__name__)
     app.secret_key = secrets.token_hex(32)
 
