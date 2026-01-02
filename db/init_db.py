@@ -1,6 +1,6 @@
 # cli/init_db.py
 from db.database import ENGINE, SessionLocal, Base
-from models import AppState, KeywordConfig, SearchConfig
+from db.models import AppState, KeywordConfig, SearchConfig
 
 def init_db(init_date:str):
     """データベースの初期化と初期データ挿入
