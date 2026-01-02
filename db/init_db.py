@@ -1,5 +1,5 @@
 # cli/init_db.py
-from database import ENGINE, SessionLocal, Base
+from db.database import ENGINE, SessionLocal, Base
 from models import AppState, KeywordConfig, SearchConfig
 
 def init_db(init_date:str):
