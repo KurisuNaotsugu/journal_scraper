@@ -3,7 +3,7 @@ import os
 from flask import Flask, render_template
 import google.genai as genai
 import secrets
-from datetime import date
+from datetime import date, timedelta
 
 from db.init_db import init_db
 
@@ -23,8 +23,9 @@ def create_app():
 
     # DB初期化
     with app.app_context():
-        today = date.today().strftime("%Y-%m-%d")
-        init_db(init_date=today)
+        one_week_ago = date.today() - timedelta(days=7)
+        init_date = one_week_ago.strftime("%Y/%m/%d")
+        init_db(init_date=init_date)
 
     # Generate Gemini API Client
     client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
