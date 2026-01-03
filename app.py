@@ -22,7 +22,6 @@ def create_app():
     app.secret_key = secrets.token_hex(32)
 
     # DB初期化
-
     with app.app_context():
         today = date.today().strftime("%Y-%m-%d")
         init_db(init_date=today)

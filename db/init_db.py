@@ -1,4 +1,4 @@
-# cli/init_db.py
+# db/init_db.py
 from db.database import ENGINE, SessionLocal, Base
 from db.models import AppState, KeywordConfig, SearchConfig
 
@@ -31,9 +31,16 @@ def init_db(init_date:str):
 
         for s in default_searches:
             # SearchConfig 作成
-            search_cfg = SearchConfig(title=s["title"])
-            session.add(search_cfg)
-            session.flush()
+            search_cfg = (
+                session.query(SearchConfig)
+                .filter_by(title=s["title"])
+                .one_or_none()
+                )
+
+            if search_cfg is None:
+                search_cfg = SearchConfig(title=s["title"])
+                session.add(search_cfg)
+                session.flush()
 
             # KeywordConfig と紐付け
             for kw_name in s["keywords"]:
@@ -52,4 +59,4 @@ def init_db(init_date:str):
         session.close()
 
 if __name__ == "__main__":
-    main()
+    init_db("2025-12-25")

@@ -189,7 +189,6 @@ def manual_search(search_meta_info: list, mindate: str, maxdate: str):
         search_period = f"{mindate}-{maxdate}".replace("/", "-")
 
         # 要約生成
-        print(f"要約を生成します...")
         summaries = summarize_abstracts(abstracts_dict)
 
         # 出力データ構築
