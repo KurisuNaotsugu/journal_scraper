@@ -6,7 +6,7 @@ def init_db(init_date:str):
     """データベースの初期化と初期データ挿入
 
     Args:
-        init_date (str): 自動検索開始日 (YYYY-MM-DD)
+        init_date (str): 自動検索開始日 (YYYY/MM/DD)
     """
     Base.metadata.create_all(bind=ENGINE)
     print("DB tables ensured.")
@@ -59,4 +59,4 @@ def init_db(init_date:str):
         session.close()
 
 if __name__ == "__main__":
-    init_db("2025-12-25")
+    init_db("2025/12/25")
